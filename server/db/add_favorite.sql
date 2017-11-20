@@ -1,0 +1,1 @@
+insert into favorites (user_id, recipe_id) values ($1, $2);

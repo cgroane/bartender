@@ -1,0 +1,1 @@
+select * from user_tastes where user_id = $1;

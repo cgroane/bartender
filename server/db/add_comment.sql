@@ -1,0 +1,1 @@
+insert into comments (recipe_id, user_id, content) values ($1, $2, $3);

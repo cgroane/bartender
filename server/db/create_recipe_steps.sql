@@ -1,0 +1,1 @@
+insert into steps (step_number, step_description, recipe_id) values ($1, $2, $3);

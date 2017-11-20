@@ -1,0 +1,12 @@
+.formButtonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.addIngredientButtonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

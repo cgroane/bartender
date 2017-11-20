@@ -1,0 +1,36 @@
+.recipeDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.commentsContainer {
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.newComment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+textarea {
+    color: black;
+    font-weight: 70;
+}
+
+.commentsList {
+    overflow: scroll;
+    height: 200px;
+    margin: 15px;
+}
+
+.recipeDetailsButtonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}

@@ -1,0 +1,10 @@
+.commentContainer {
+    background: black;
+    opacity: .6;
+    
+}
+
+.nameContentDivider {
+    width: 100px;
+    margin: 3px;
+}

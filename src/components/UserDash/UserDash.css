@@ -1,0 +1,61 @@
+.userDashContainer {
+    
+    margin: 0 auto;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    height: auto;
+}
+.dashContentContainer {
+    display: block;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.dashContentChild {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.dashContentChildContainer {
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+    justify-content: center;
+    margin: 0px auto;
+    width: 100%;
+
+}
+
+.list-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.pageHeaderContainer {
+    width: 100%;
+    text-align: left;
+
+}
+
+.fullPageCarousel {
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel slide {
+    width: 100%
+}

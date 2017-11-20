@@ -1,0 +1,1 @@
+insert into recipes (recipe_title, recipe_description, image_url, user_id, serves) values ($1, $2, $3, $4, $5) RETURNING recipe_id;
