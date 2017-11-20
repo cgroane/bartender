@@ -34,10 +34,22 @@ class AddRecipe extends Component {
         this.handleStepAdd = this.handleStepAdd.bind(this);
         this.handleRemoveIngredient = this.handleRemoveIngredient.bind(this);
         this.handleIngredientChange = this.handleIngredientChange.bind(this);
+        this.handleIngredientsSave = this.handleIngredientsSave.bind(this);
+        this.handleStepsSave = this.handleStepsSave.bind(this);
     }
 
     componentDidMount() {
         this.setState({recSaved:false})
+    }
+    handleStepsSave() {
+        this.state.inputStepsArray.forEach((cur, ind) => {
+            return axios.post(`/api/recipes/steps/${this.state.recipeAdded.recipe_id}`, cur).then(response => response.data)
+        })
+    }
+    handleIngredientsSave() {
+        this.state.inputIngredientsArray.forEach((cur, ind) => {
+            return axios.post(`/api/recipes/ingredients/${this.state.recipeAdded.recipe_id}`, cur).then(response => response.data)
+        })
     }
     
     handleRecipeSave() {
@@ -191,7 +203,8 @@ class AddRecipe extends Component {
         <div>
             <Form inline>
                 <div>{stepsAddDisplay}</div>
-                <div><Button onClick={this.handleStepAdd} >Add another Step</Button></div>
+                <div><Button onClick={this.handleStepAdd} >+</Button></div>
+                <Button onClick={this.handleStepsSave} >Save Ingredients List</Button>
                 {/* loop through steps add display, access the value  */}
             </Form>
         </div>

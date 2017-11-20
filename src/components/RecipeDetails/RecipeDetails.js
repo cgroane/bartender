@@ -71,6 +71,7 @@ class RecipeDetails extends Component {
     
     render() {
         // console.log(this.props);
+        
         if (this.state.showModal === true) {
             var viewModal = <EditModal rec_id={this.props.match.params.recipe_id}/>
         }
@@ -89,6 +90,12 @@ class RecipeDetails extends Component {
                 username,
                 user_id
             } = drink;
+        }
+        if (drink.user_id == this.props.user.user_id) {
+            var addToFavoritesButton = null
+        }
+        else {
+            var addToFavoritesButton = <Button onClick={this.handleAddToFavorites} >Add to favorites</Button>
         }
 
         if (this.props.comments.length > 0) {
@@ -121,7 +128,7 @@ class RecipeDetails extends Component {
                     <div className="amountServed" >Serves: {serves}</div>
                     <div className="addedBy" >Recipe Added By: {username}</div>
                     <div className="recipeDetailsButtonContainer" >
-                        <Button onClick={this.handleAddToFavorites} >Add to favorites</Button>
+                        {addToFavoritesButton}
                         {editButton}
                     </div>
 

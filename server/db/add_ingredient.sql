@@ -1,0 +1,1 @@
+insert into ingredient (quantity, unit, title, recipe_id) values ($1, $2, $3, $4);

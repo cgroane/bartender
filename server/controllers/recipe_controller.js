@@ -99,8 +99,17 @@ module.exports = {
         dbInstance.update_recipe_ingredients([req.body.quantity, req.body.unit, req.body.title, req.params.recipe_id, req.body.ingredient_id])
         .then(res.status(200).send())
         .catch(res.status(500).send());
+    },
+    addIngredient: function (req, res, next) {
+        const dbInstance = req.app.get('db')
+
+        dbInstance.add_ingredient([req.body.quantity, req.body.unit, req.body.title, req.params.recipe_id])
+        .then(res.status(200).send())
+        .catch(() => res.status(500).send());
     }
 }
+
+// insert into ingredient (quantity, unit, title, recipe_id) values ($1, $2, $3, $4);
 
 // set quantity = $1, unit = $2, title = $3, recipe_id = $4
 // where ingredient_id = $5;

@@ -115,6 +115,7 @@ app.post('/api/comments/:recipe_id', recipeCtrl.addComment);
 app.put('/api/recipes/:recipe_id/edit', recipeCtrl.updateRecipe);
 app.put('/api/recipes/:recipe_id/steps/edit', recipeCtrl.updateRecipeSteps);
 app.put('/api/recipes/:recipe_id/ingredients/edit', recipeCtrl.updateRecipeIngredients);
+app.post('/api/recipes/ingredients/:recipe_id', recipeCtrl.addIngredient);
 
 //user attributes
 app.get('/api/users/dashboard', userCtrl.getAllUserData);
