@@ -23,6 +23,8 @@ const ADD_RECIPE_INGREDIENTS = "ADD_RECIPE_INGREDIENTS";
 const ADD_RECIPE_STEPS = "ADD_RECIPE_STEPS";
 const UPDATE_COMMENT = "UPDATE_COMMENT";
 const GET_COMMENTS = "GET_COMMENTS";
+const SHOW_EDIT_RECIPE_MODAL= "SHOW_EDIT_RECIPE_MODAL";
+const HIDE_EDIT_RECIPE_MODAL= "HIDE_EDIT_RECIPE_MODAL";
 
 
 
@@ -39,7 +41,18 @@ const GET_COMMENTS = "GET_COMMENTS";
 //         })
 //     })
 // }
-
+export function showEditRecipeModal() {
+    return {
+        type: SHOW_EDIT_RECIPE_MODAL,
+        payload: true
+    }
+}
+export function hideEditRecipeModal() {
+    return {
+        type: HIDE_EDIT_RECIPE_MODAL,
+        payload: false
+    }
+}
 export function getComments(id) {
     return {
         type: GET_COMMENTS,
@@ -201,7 +214,8 @@ const initialState = {
     addRecipeIngredients: [],
     addRecipeSteps: [],
     newComment: '',
-    comments: []
+    comments: [],
+    showRecipeModal: false
 };
 
 //reducer
@@ -264,6 +278,10 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {isLoading: true})
         case GET_COMMENTS + "_FULFILLED":
             return Object.assign({}, state, {comments: action.payload, isLoading: false})
+        case SHOW_EDIT_RECIPE_MODAL:
+            return Object.assign({}, state, {showRecipeModal: action.payload})
+        case HIDE_EDIT_RECIPE_MODAL:
+            return Object.assign({}, state, {showRecipeModal: action.payload})
          default:
             return state;
     }

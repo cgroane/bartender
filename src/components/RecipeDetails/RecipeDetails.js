@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {Button} from 'react-bootstrap';
 import CommentsTile from './CommentsTile/CommentsTile';
 import EditModal from './EditModal/EditModal';
-import {getSteps, getIngredients, requestUser, updateComment, getComments} from './../../ducks/reducer';
+import {getSteps, getIngredients, requestUser, updateComment, getComments, hideEditRecipeModal, showEditRecipeModal} from './../../ducks/reducer';
 import './RecipeDetails.css';
 
 
@@ -14,19 +14,20 @@ class RecipeDetails extends Component {
         super(props);
         this.state = {
             newComment: '',
-            showModal: false
+            // showModal: false
         }
 
         this.handleAddToFavorites = this.handleAddToFavorites.bind(this);
         this.handleComment = this.handleComment.bind(this);
-        this.handleEdit = this.handleEdit.bind(this);
+        // this.handleEdit = this.handleEdit.bind(this);
     }
     componentDidMount() {
     this.props.requestUser();
     this.props.getSteps(this.props.match.params.recipe_id);
     this.props.getIngredients(this.props.match.params.recipe_id);
     this.props.getComments(this.props.match.params.recipe_id);
-    this.setState({showModal: false});
+
+    // this.setState({showModal: false});
     }
     
     
@@ -63,16 +64,16 @@ class RecipeDetails extends Component {
         this.setState({newComment: comment});
     }
 
-    handleEdit() {
-        console.log(this.props);
-        this.setState({showModal: true})
-    }
+    // handleEdit() {
+    //     console.log(this.props);
+    //     this.props.showEditRecipeModal();
+    // }
 
     
     render() {
         // console.log(this.props);
         
-        if (this.state.showModal === true) {
+        if (this.props.showRecipeModal === true) {
             var viewModal = <EditModal rec_id={this.props.match.params.recipe_id}/>
         }
         else {
@@ -111,12 +112,25 @@ class RecipeDetails extends Component {
             var commentsDisplay = <div><span>This recipe has no comments yet. Add your thoughts below!</span></div>
         }
         if (this.props.user.user_id == drink.user_id) {
-            var editButton = <Button onClick={this.handleEdit} >Edit this recipe</Button>
+            var editButton = <Button onClick={() => this.props.showEditRecipeModal()} >Edit this recipe</Button>
         }
         else {
             var editButton = null;
         }
-        
+        var stepsDisplay = this.props.recipeSteps.map((cur, ind) => {
+            return (
+                <div key={ind} >
+                    <span>{cur.step_number}</span>
+                </div>
+            )
+        })
+        var ingredientDisplay = this.props.recipeIngredients.map((cur, ind) => {
+            return (
+                <div key={ind}>
+                    <span>{cur.title}</span>
+                </div>
+            )
+        })
 
 
         return (
@@ -130,6 +144,8 @@ class RecipeDetails extends Component {
                     <div className="recipeDetailsButtonContainer" >
                         {addToFavoritesButton}
                         {editButton}
+                        {stepsDisplay}
+                        {ingredientDisplay}
                     </div>
 
                     <hr/>
@@ -140,7 +156,7 @@ class RecipeDetails extends Component {
                     </div>
                     <div className="newComment" >
                         <textarea placeholder="Leave a comment..."  onChange={(e) => this.commentChange(e.target.value)} ></textarea>
-                        <Button onClick={this.handleComment} >Comment</Button>
+                        <Button onClick={this.handleComment} bsStyle="primary"  >Comment</Button>
                     </div>
 
                 <div>{viewModal}</div>
@@ -154,4 +170,4 @@ class RecipeDetails extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, {getSteps, getIngredients, requestUser, updateComment, getComments})(RecipeDetails);
+export default connect(mapStateToProps, {getSteps, getIngredients, requestUser, updateComment, getComments, hideEditRecipeModal, showEditRecipeModal})(RecipeDetails);

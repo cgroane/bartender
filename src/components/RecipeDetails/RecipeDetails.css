@@ -12,9 +12,11 @@
 }
 
 .newComment {
+    width: 50vw;
+    margin: 10px auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 textarea {
@@ -34,3 +36,4 @@ textarea {
     justify-content: space-between;
     margin: 10px;
 }
+
