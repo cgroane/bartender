@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {requestUser, getFavorites, getMyRecipes, getUserTastes, getRecommended, getAllRecipes} from '../../ducks/reducer';
+import {requestUser, getFavorites, getMyRecipes, getUserTastes, getRecommended, getAllRecipes, showUserModal, hideUserModal} from '../../ducks/reducer';
 import Favorites from './../Favorites/Favorites';
 import MyRecipes from './../MyRecipes/MyRecipes';
 import UserTastes from './../UserTastes/UserTastes';
 import Recommended from './../Recommended/Recommended';
+import UserEditModal from './UserEditModal/UserEditModal';
 import {Button, PageHeader} from 'react-bootstrap';
 import './UserDash.css';
 
@@ -34,6 +35,12 @@ class LandingPage extends Component {
     
         render() {
             // console.log(this.props);
+            if(this.props.showUserEditModal) {
+                var userModal = <UserEditModal />
+            }  
+            else {
+                var userModal = null;
+            }
             
             return (
                 <div className="userDashContainer" >
@@ -64,7 +71,8 @@ class LandingPage extends Component {
                                 Add new Recipe
                             </Button>
                         </Link>
-                        <Button>Edit profile</Button>
+                        <Button onClick={() => this.props.showUserModal()} >Edit profile</Button>
+                        {userModal}
                 </div>
         )
     }
@@ -77,10 +85,11 @@ function mapStateToProps(state){
     favorites: state.favorites,
     myRecipes: state.myRecipes,
     userTastes: state.userTastes,
-    recommended: state.recommended
+    recommended: state.recommended,
+    showUserEditModal: state.showUserEditModal
     }
 }
 
-export default connect(mapStateToProps, {requestUser, getFavorites, getMyRecipes, getUserTastes, getRecommended, getAllRecipes})(LandingPage)
+export default connect(mapStateToProps, {requestUser, getFavorites, getMyRecipes, getUserTastes, getRecommended, getAllRecipes, showUserModal, hideUserModal})(LandingPage)
 
 // when running the reducer functions that use axios and take in a parameter in the url, pass in the value when invoking the action creator.

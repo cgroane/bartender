@@ -122,6 +122,7 @@ app.get('/api/users/dashboard', userCtrl.getAllUserData);
 app.post('/api/favorites/:user_id', favoriteCtrl.addFavorite);
 app.get('/api/favorites/:user_id', favoriteCtrl.getFavorites);
 app.get('/api/users/:user_id/tastes', userCtrl.getUserTastes);
+app.put('/api/users/:user_id/edit', userCtrl.updateUser);
 
 
 

@@ -1,5 +1,6 @@
 import axios from "axios";
-import { O_APPEND } from "constants";
+
+// import { O_APPEND } from "constants";
 
 
 
@@ -25,6 +26,10 @@ const UPDATE_COMMENT = "UPDATE_COMMENT";
 const GET_COMMENTS = "GET_COMMENTS";
 const SHOW_EDIT_RECIPE_MODAL= "SHOW_EDIT_RECIPE_MODAL";
 const HIDE_EDIT_RECIPE_MODAL= "HIDE_EDIT_RECIPE_MODAL";
+const SHOW_USER_EDIT_MODAL = "SHOW_USER_EDIT_MODAL";
+const HIDE_USER_EDIT_MODAL = "HIDE_USER_EDIT_MODAL";
+const UPDATE_EDIT_USERNAME = "UPDATE_EDIT_USERNAME";
+const UPDATE_EDIT_USER_IMAGE = "UPDATE_EDIT_USER_IMAGE";
 
 
 
@@ -41,6 +46,30 @@ const HIDE_EDIT_RECIPE_MODAL= "HIDE_EDIT_RECIPE_MODAL";
 //         })
 //     })
 // }
+export function updateEditUsername(username) {
+    return {
+        type: UPDATE_EDIT_USERNAME,
+        payload: username
+    }
+}
+export function updateEditUserImage(imageURL) {
+    return {
+        type: UPDATE_EDIT_USER_IMAGE,
+        payload: imageURL
+    }
+}
+export function showUserModal() {
+    return {
+        type: SHOW_USER_EDIT_MODAL,
+        payload: true
+    }
+}
+export function hideUserModal() {
+    return {
+        type: HIDE_USER_EDIT_MODAL,
+        payload: false
+    }
+}
 export function showEditRecipeModal() {
     return {
         type: SHOW_EDIT_RECIPE_MODAL,
@@ -215,7 +244,12 @@ const initialState = {
     addRecipeSteps: [],
     newComment: '',
     comments: [],
-    showRecipeModal: false
+    showRecipeModal: false,
+    showUserEditModal: false,
+    editUser: {
+        username: '',
+        image_url: ''
+    }
 };
 
 //reducer
@@ -282,6 +316,22 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {showRecipeModal: action.payload})
         case HIDE_EDIT_RECIPE_MODAL:
             return Object.assign({}, state, {showRecipeModal: action.payload})
+        case SHOW_USER_EDIT_MODAL:
+            return Object.assign({}, state, {showUserEditModal: action.payload})
+        case HIDE_USER_EDIT_MODAL:
+            return Object.assign({}, state, {showUserEditModal: action.payload})
+        case UPDATE_EDIT_USER_IMAGE:
+            {
+                var editUserData = Object.assign({}, state.editUser);
+                editUserData.image_url = action.payload
+                return Object.assign({},state,{editUser: editUserData})
+            }
+        case UPDATE_EDIT_USERNAME:
+            {
+                var editUserData = Object.assign({}, state.editUser);
+                editUserData.username = action.payload
+                return Object.assign({}, state, {editUser: editUserData})
+            }
          default:
             return state;
     }
