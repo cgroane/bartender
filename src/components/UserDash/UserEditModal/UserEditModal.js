@@ -31,7 +31,9 @@ class UserEditModal extends Component {
                         )
                     })
                 )
-            }))
+            })
+        )
+        this.props.hideUserModal();
        
     }
 
@@ -50,7 +52,7 @@ class UserEditModal extends Component {
                     <hr/>
                     <h4>Profile Image URL:</h4>
                     
-                    <textarea placeholder={image_url} onChange={(e) => {this.props.updateEditUserImage(e.target.value)}} />
+                    <textarea placeholder={image_url} value={image_url} onChange={(e) => {this.props.updateEditUserImage(e.target.value)}} />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={this.handleSave} >

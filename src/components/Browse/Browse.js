@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {Button} from 'react-bootstrap';
+import {Button, Grid, Row} from 'react-bootstrap';
 import BrowseTile from './BrowseTile/BrowseTile';
 import {getAllRecipes, requestUser} from './../../ducks/reducer';
 
@@ -19,12 +19,14 @@ class Browse extends Component {
         // console.log(this.props);
         
         const browseTileList = this.props.allRecipes.map((cur, ind) => {
-            return (<BrowseTile key={ind} title={cur.recipe_title} descript={cur.recipe_description} rec_id={cur.recipe_id} pic={cur.image} servesAmt={cur.serves} />)
+            return (<BrowseTile key={ind} title={cur.recipe_title} descript={cur.recipe_description} rec_id={cur.recipe_id} pic={cur.image_url} servesAmt={cur.serves} />)
     })
         return (
-            <div className="browseGrid" >
+            <Grid className="browseGrid" >
+            <Row>
                 {browseTileList}
-            </div>
+            </Row>
+            </Grid>
         )
     }
 }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {Button} from 'react-bootstrap';
+import {Button, Col, Thumbnail} from 'react-bootstrap';
 import {getAllRecipes} from './../../../ducks/reducer';
 
 class BrowseTile extends Component {
@@ -10,6 +10,7 @@ class BrowseTile extends Component {
     }
     componentDidMount() {
         this.props.getAllRecipes();
+
     }
     render() {
 
@@ -18,13 +19,16 @@ class BrowseTile extends Component {
         
 
         return(
-            <div>
+            <Col xs={6} md={4} >
                 <Link to={`/${this.props.rec_id}/recipe_details`} >
-                <div className="browseTile" >
+                <Thumbnail src={`${this.props.pic}`} alt="242x200" >
+                <h3 className="browseTile" >
                     {this.props.title}
-                </div>
+                </h3>
+                </Thumbnail>
                 </Link>
-            </div>
+                
+            </Col>
         )
     }
 }

@@ -28,6 +28,7 @@ class EditModal extends Component {
     }
     close() {
         this.props.hideEditRecipeModal();
+        console.log(this.props)
     }
 
     render(){
