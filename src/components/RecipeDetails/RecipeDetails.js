@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {Button} from 'react-bootstrap';
 import CommentsTile from './CommentsTile/CommentsTile';
 import EditModal from './EditModal/EditModal';
+import StepItem from './StepItem/StepItem';
 import {getSteps, getIngredients, requestUser, updateComment, getComments, hideEditRecipeModal, showEditRecipeModal} from './../../ducks/reducer';
 import './RecipeDetails.css';
 
@@ -119,9 +120,7 @@ class RecipeDetails extends Component {
         }
         var stepsDisplay = this.props.recipeSteps.map((cur, ind) => {
             return (
-                <div key={ind} >
-                    <span>{cur.step_number}</span>
-                </div>
+                <StepItem key={ind} stepNum={cur.step_number} stepDesc={cur.step_description}/>
             )
         })
         var ingredientDisplay = this.props.recipeIngredients.map((cur, ind) => {
@@ -131,6 +130,7 @@ class RecipeDetails extends Component {
                 </div>
             )
         })
+
 
 
         return (
@@ -143,26 +143,28 @@ class RecipeDetails extends Component {
                     <div className="addedBy" >Recipe Added By: {username}</div>
                     <div className="recipeDetailsButtonContainer" >
                         {addToFavoritesButton}
-                        {editButton}
-                        {stepsDisplay}
+                        
+                        
                         {ingredientDisplay}
                     </div>
 
                     <hr/>
+                    <div className="stepsParentContainer" >
+                    {stepsDisplay}
+                    </div>
                 </div>
                 <div className="commentsContainer" >
                     <div className="commentsList" >
                         {commentsDisplay}
                     </div>
                     <div className="newComment" >
-                        <textarea placeholder="Leave a comment..."  onChange={(e) => this.commentChange(e.target.value)} ></textarea>
-                        <Button onClick={this.handleComment} bsStyle="primary"  >Comment</Button>
+                        <textarea className="commentTextBox" placeholder="Leave a comment..."  onChange={(e) => this.commentChange(e.target.value)} ></textarea>
+                        <button onClick={this.handleComment} className="commentButton"  >Comment</button>
                     </div>
 
-                <div>{viewModal}</div>
-
                 </div>
-                
+                <div className="editButtonContainer" >{editButton}</div>
+                <div>{viewModal}</div>
             </div>
         )
     }

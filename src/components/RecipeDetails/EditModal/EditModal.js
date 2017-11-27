@@ -68,17 +68,18 @@ class EditModal extends Component {
 
         return (
             
-            <Modal.Dialog  >
-
+            <Modal  >
+                <Modal.Header>
                 <Button onClick={this.handleButtonClick} >this is the edit EditModal</Button>
+                </Modal.Header>
                 <div> {editRecDisplay} </div>
                 <hr/>
                 <div> {stepsDisplay} </div>
                 <hr/>
-                {/* <div>{ingredientDisplay}</div> */}
+                <div>{ingredientDisplay}</div>
                 <Button onClick={this.close} >Close</Button>
                 
-            </Modal.Dialog>
+            </Modal>
         )
     }
 }

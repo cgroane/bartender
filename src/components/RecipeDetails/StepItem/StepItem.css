@@ -1,0 +1,18 @@
+.stepContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    text-align: left;
+    height: auto;
+}
+
+.stepNumberContainer{
+    margin-right: 15px;
+    width: 20px;;
+}
+.stepNumberContainer hr{
+    width: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
