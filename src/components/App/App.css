@@ -16,14 +16,66 @@
   font-family: 'bourbongrotesque-regular1';
   text-transform: uppercase !important;
   font-weight: 900;
+  
 }
 
 .component_Container {
   color: white;
-  margin: 0 auto;
+  margin: 75px auto 0 auto;
   width: 98%;
   height: 100%;
   display: flex;
   justify-content: center;
 
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+  position: relative;
+
+}
+
+@media (max-width: 992px) {
+  .navbar-expand-lg {
+      display: flex!important;
+      flex-basis: auto;
+  }
+  #mainNav.navbar-shrink {
+      padding-top: 0;
+      padding-bottom: 0;
+      background: #212529;
+  }
+  #mainNav {
+      transition: padding-top 2s, padding-bottom 2s;
+      border: none;
+  }
+  .navbar-expand-lg {
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+  }
+  .collapse {
+      display: none;
+  }
+  .navbar-toggler {
+      display: inline;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 }

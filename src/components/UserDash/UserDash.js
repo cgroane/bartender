@@ -44,14 +44,16 @@ class LandingPage extends Component {
             
             return (
                 <div className="userDashContainer" >
-
-                    Hello World
-                    {this.props.user.username && (
-                            <div>
-                                {this.props.user.username} & {this.props.user.user_id}
-                                
-                            </div>
-                        )}
+                    <div className="userDashInfoContainer" >
+                        Hello World
+                        {this.props.user.username && (
+                                <div>
+                                    {this.props.user.username} & {this.props.user.user_id}
+                                    
+                                </div>
+                            )}
+                    </div>
+                   
                         <div className="pageHeaderContainer" ><UserTastes/></div>
                         <div className="dashContentContainer">
                             <div className="pageHeaderContainer" ><PageHeader>Your Go-To's:</PageHeader></div>

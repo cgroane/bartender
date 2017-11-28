@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 // import { O_APPEND } from "constants";
 
 
@@ -30,7 +31,8 @@ const SHOW_USER_EDIT_MODAL = "SHOW_USER_EDIT_MODAL";
 const HIDE_USER_EDIT_MODAL = "HIDE_USER_EDIT_MODAL";
 const UPDATE_EDIT_USERNAME = "UPDATE_EDIT_USERNAME";
 const UPDATE_EDIT_USER_IMAGE = "UPDATE_EDIT_USER_IMAGE";
-
+const UPDATE_USER_SAVE =  "UPDATE_USER_SAVE";
+const LOAD_EDIT_DATA = "LOAD_EDIT_DATA";
 
 
 //action creators
@@ -46,6 +48,19 @@ const UPDATE_EDIT_USER_IMAGE = "UPDATE_EDIT_USER_IMAGE";
 //         })
 //     })
 // }
+export function loadEditData(userObj) {
+    return {
+        type: LOAD_EDIT_DATA,
+        payload: userObj
+    }
+}
+export function handleUserEditSave(id, userObj) {
+    return {
+        type: UPDATE_USER_SAVE,
+        payload: axios.put(`/api/users/${id}/edit`, userObj).then(response => response.data )
+    }
+}
+
 export function updateEditUsername(username) {
     return {
         type: UPDATE_EDIT_USERNAME,
@@ -331,6 +346,17 @@ export default function reducer(state = initialState, action) {
                 var editUserData = Object.assign({}, state.editUser);
                 editUserData.username = action.payload
                 return Object.assign({}, state, {editUser: editUserData})
+            }
+        case UPDATE_USER_SAVE + "_PENDING":
+            return Object.assign({}, state, {isLoading:true})
+        case UPDATE_USER_SAVE + "_FULFILLED":
+            
+            return Object.assign({}, state, {user: action.payload})
+        case LOAD_EDIT_DATA:
+            {
+                var editUserData = Object.assign({}, state.editUser)
+                editUserData = action.payload
+                return Object.assign({}, state, {editUser:editUserData})
             }
          default:
             return state;

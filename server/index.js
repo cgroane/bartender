@@ -61,6 +61,7 @@ passport.use(
                 return done(null, created[0]);
               });
           } else {
+            console.log(response)
             return done(null, response[0]);
           }
         });
@@ -85,7 +86,11 @@ app.get(
 
 app.get("/api/me", function(req, res) {
   if (!req.user) return res.status(404);
-  res.status(200).json(req.user);
+    req.app.get('db').get_user_by_auth_id([req.user.authid])
+    .then((user) => res.status(200).send(user[0] ))
+    .catch(() => res.status(500).send());
+
+  
 });
 
 app.get("/api/test", (req, res, next) => {

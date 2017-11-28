@@ -25,8 +25,13 @@ getUserTastes: function (req, res, next) {
 },
 updateUser: function (req, res, next) {
     const dbInstance = req.app.get('db')
+    
     dbInstance.update_user([req.body.username, req.body.image_url, req.params.user_id])
-    .then(res.status(200).send)
+    .then((user) => {
+        req.user = user[0]
+        console.log("update user function", req.user)
+        res.status(200).send(user[0])
+    })
     .catch(() => res.status(500).send())
 }
 

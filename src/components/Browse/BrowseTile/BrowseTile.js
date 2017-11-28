@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Button, Col, Thumbnail} from 'react-bootstrap';
 import {getAllRecipes} from './../../../ducks/reducer';
+import './BrowseTile.css';
 
 class BrowseTile extends Component {
     constructor(props)   {
@@ -19,16 +20,17 @@ class BrowseTile extends Component {
         
 
         return(
-            <Col xs={6} md={4} >
+            <div className="browseCard" >
                 <Link to={`/${this.props.rec_id}/recipe_details`} >
-                <Thumbnail src={`${this.props.pic}`} alt="242x200" >
-                <h3 className="browseTile" >
-                    {this.props.title}
-                </h3>
-                </Thumbnail>
-                </Link>
-                
-            </Col>
+                    <img src={`${this.props.pic}`} alt="242x200" className="browseCardImage" />
+                    <div className="browseCardText" >
+                        <h3 className="browseTile" >
+                            {this.props.title}
+                        </h3>
+                    </div>
+                </Link>   
+            </div>
+
         )
     }
 }

@@ -10,3 +10,11 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+.addRecipe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 75%;
+    z-index: 1040;
+}

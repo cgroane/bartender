@@ -2,9 +2,13 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import FontAwesome from 'react-fontawesome';
+import AppBar from 'material-ui/AppBar';
+
 
 import {Navbar, FormControl, FormGroup, Button} from 'react-bootstrap';
-import {requestUser, getAllRecipes, updateSearchTerms} from './../../ducks/reducer';
+import {requestUser, getAllRecipes, updateSearchTerms, showNav, hideNav} from './../../ducks/reducer';
+import './Nav.css';
 
 
 
@@ -38,76 +42,74 @@ class Nav extends Component {
     render() {
 if (this.props.user == {} ) {
     var navbarInstance = (
-      <Navbar>
-      <Navbar.Header>
-        <Navbar.Brand>
+      <div>
+        <a className="closebtn" onClick="closeNav" href="#" > &times; </a>
 
-          <Link to="/" >
-            B.Y.O.B.
-          </Link>
+        <div className="overlayContent" >
+          <a href="#">About</a>
+          <a href="#">About</a>
+          <a href="#">About</a>
+          <a href="#">About</a>
 
-        </Navbar.Brand>
-        <Navbar.Toggle />
-      </Navbar.Header>
-      <Navbar.Collapse>
-        <Navbar.Form pullLeft>
-          <FormGroup>
-            <FormControl type="text" placeholder="Search Recipes" />
-          </FormGroup>
-          
-          {' '}
-          <Button type="submit">Submit</Button>
-          
-          
-        </Navbar.Form>
-        <Link to="/">
-                  <Navbar.Brand onClick={this.handleLogin} >Login</Navbar.Brand>
-          </Link>
-        
-      </Navbar.Collapse>
-    </Navbar>
+        </div>
+      <FontAwesome className="super-crazy-colors" name="bars" size="2x" style={{textShadow: '0 1px 0 rgba(0,0,0,0.1)' }} />
+
+
+      </div>
     )
   }
   else {
     var navbarInstance = (
-      <Navbar>
-      <Navbar.Header>
-        <Navbar.Brand>
-          <Link to="/" >
-            B.Y.O.B.
-          </Link>
-        </Navbar.Brand>
-        <Navbar.Brand>
-            <Link to="/browse"  onClick={this.handleClick}>
-              Browse
-            </Link>
-          </Navbar.Brand>
-        <Navbar.Toggle />
-      </Navbar.Header>
-      <Navbar.Collapse>
-        <Navbar.Form pullLeft>
-          <FormGroup>
-            <FormControl type="text" placeholder="Search Recipes" onChange={(e) => this.props.updateSearchTerms(e.target.value)} />
-          </FormGroup>
-          
-          {' '}
-          <Button type="submit">Submit</Button>
-          
-         
-
-        </Navbar.Form>
-        <Link to="/">
-                  <Navbar.Brand onClick={this.handleLogin} >Logout</Navbar.Brand>
-          </Link>
-        <Link to="/dashboard">
-          <Navbar.Brand>{this.props.user.username}</Navbar.Brand>
-        </Link>
-      </Navbar.Collapse>
-    </Navbar>
+      <AppBar title={<Link to="/" > <span >B.Y.O.B</span> </Link>}  iconClassNameRight="muidocs-icon-navigation-expand-more" />
     )
   }
         return (
-           <div> {navbarInstance} </div>
+           <div className="navContainer" > 
+           
+           <nav className="navbar fixed-top navbar-expand-lg navbar-dark navbar-shrink" id="mainNav" >
+            <div className="navContainer">
+              <div className="brandContainer" >
+                <Link to="/" className="navbar-brand js-scroll-trigger nav-item" >
+                    B.Y.O.B
+                </Link>
+                <input type="text" className="navSearchBar" placeholder="Search Recipes" onChange={(e) => this.props.updateSearchTerms(e.target.value)} />
+                  <Link to="/" className="nav-link js-scroll-trigger" >
+                      <button className="navSearchButton" >SEARCH</button>
+                  </Link>
+              </div>
+            <button className="navbar-toggler navbar-toggler-right collapsed" type="button" >
+                Menu
+                
+            </button>
+
+            <FontAwesome className="menuIcon" name="bars" size="2x" style={{textShadow: '0 1px 0 rgba(0,0,0,0.1)' }} onClick={this.props.showNav} />  
+            
+           
+              <div className="collapse navbar-collapse" >
+              
+                  <ul className="navbar-nav text-uppercase ml-auto" >
+                    <li className="nav-item">
+                      <Link to={`/dashboard`} className="nav-item" >
+                        {this.props.user.username}
+                      </Link>
+                    </li>
+                    <li className="nav-item" >
+                      <Link onClick={this.handleLogin} to="/" className="nav-item" >
+                        Logout
+                      </Link>
+                    </li>
+                    <li className="nav-item" >
+                    <Link to="/browse"  onClick={this.handleClick} className="nav-item" >
+                      Browse
+                    </Link>
+                    </li>
+                  </ul>
+                  
+              </div>
+            
+        </div>
+        </nav>
+           </div>
         )
     }
 }

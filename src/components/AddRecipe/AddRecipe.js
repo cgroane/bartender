@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {requestUser, getFavorites, updateRecipeDescription, updateRecipeServes, updateRecipeTitle, updateRecipeImage} from '../../ducks/reducer';
 import {Form, inline, horizontal, FormControl, ControlLabel, Col, FormGroup, Label, Button} from 'react-bootstrap';
 import './AddRecipe.css';
-import { loadavg } from 'os';
+
 
 
 class AddRecipe extends Component {
@@ -106,7 +106,7 @@ class AddRecipe extends Component {
         function FieldGroup({id, label, ...props}) {
            return (
            <FormGroup controlId={id}>
-                <ControlLabel>{Label}</ControlLabel>
+                <ControlLabel>{label}:</ControlLabel>
                 <FormControl {...props} />
             </FormGroup>
         )
@@ -157,7 +157,7 @@ class AddRecipe extends Component {
 
 
         return (
-            <div>
+            <div className="addRecipe" >
                 <form>
             <FormGroup controlId="formControlsText">
                 <ControlLabel>Title</ControlLabel>
@@ -189,7 +189,7 @@ class AddRecipe extends Component {
             
 
         </form>
-        <div>
+        <div className="accordion" >
         <Form inline >
             {ingredientsAddDisply}
         </Form>
@@ -200,9 +200,9 @@ class AddRecipe extends Component {
             {/* loop through the ingredientsAddDisplay */}
         </div>
         <hr/>
-        <div>
+        <div className="accordion" >
             <Form inline>
-                <div>{stepsAddDisplay}</div>
+                <div className="addIngredientButtonContainer" >{stepsAddDisplay}</div>
                 <div><Button onClick={this.handleStepAdd} >+</Button></div>
                 <Button onClick={this.handleStepsSave} >Save Ingredients List</Button>
                 {/* loop through steps add display, access the value  */}

@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {Button, Modal, Dialog, Header, Title, Body, Footer} from 'react-bootstrap';
+import {Button, Modal, Header, Title, Body, Footer} from 'react-bootstrap';
+import Dialog from 'material-ui/Dialog';
+
 
 import {getSteps, getIngredients, requestUser, updateComment, getComments, hideEditRecipeModal} from './../../../ducks/reducer';
 import './EditModal.css';
@@ -67,19 +69,20 @@ class EditModal extends Component {
         })
 
         return (
-            
-            <Modal  >
-                <Modal.Header>
-                <Button onClick={this.handleButtonClick} >this is the edit EditModal</Button>
-                </Modal.Header>
-                <div> {editRecDisplay} </div>
-                <hr/>
-                <div> {stepsDisplay} </div>
-                <hr/>
-                <div>{ingredientDisplay}</div>
-                <Button onClick={this.close} >Close</Button>
-                
-            </Modal>
+            <div>            
+                <Dialog title="Scrollable Dialog"  modal={false} autoScrollBodyContent={true} open={this.props.showRecipeModal} >
+                    <Modal.Header>
+                    <Button onClick={this.handleButtonClick} >this is the edit EditModal</Button>
+                    </Modal.Header>
+                    <div> {editRecDisplay} </div>
+                    <hr/>
+                    <div> {stepsDisplay} </div>
+                    <hr/>
+                    <div>{ingredientDisplay}</div>
+                    <Button onClick={this.close} >Close</Button>
+                    
+                </Dialog>
+            </div>
         )
     }
 }

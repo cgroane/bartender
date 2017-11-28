@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Button, Grid, Row} from 'react-bootstrap';
 import BrowseTile from './BrowseTile/BrowseTile';
 import {getAllRecipes, requestUser} from './../../ducks/reducer';
+import './Browse.css';
 
 
 class Browse extends Component {
@@ -22,11 +23,11 @@ class Browse extends Component {
             return (<BrowseTile key={ind} title={cur.recipe_title} descript={cur.recipe_description} rec_id={cur.recipe_id} pic={cur.image_url} servesAmt={cur.serves} />)
     })
         return (
-            <Grid className="browseGrid" >
-            <Row>
+            
+            <div className="browseGrid" >
                 {browseTileList}
-            </Row>
-            </Grid>
+            </div>
+            
         )
     }
 }
