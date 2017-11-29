@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 90%;
+    width: 45%;
     text-align: left;
-    height: auto;
+    height: 120px;
 }
 
 .stepNumberContainer{

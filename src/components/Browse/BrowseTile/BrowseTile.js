@@ -21,12 +21,16 @@ class BrowseTile extends Component {
 
         return(
             <div className="browseCard" >
-                <Link to={`/${this.props.rec_id}/recipe_details`} >
-                    <img src={`${this.props.pic}`} alt="242x200" className="browseCardImage" />
+                
+                    <div className="browseCardImageContainer" >
+                        <img src={`${this.props.pic}`} alt="242x200" className="browseCardImage" />
+                    </div>
+                    <Link to={`/${this.props.rec_id}/recipe_details`} >
                     <div className="browseCardText" >
                         <h3 className="browseTile" >
                             {this.props.title}
                         </h3>
+                        <p>{this.props.descript}</p>
                     </div>
                 </Link>   
             </div>

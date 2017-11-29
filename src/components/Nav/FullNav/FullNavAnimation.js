@@ -1,7 +1,7 @@
 import {TweenMax, Elastic} from 'gsap';
 
 
-const duration = 0.5;
+const duration = 1;
 
 export default {
     show (target, cb) {
@@ -10,7 +10,7 @@ export default {
             opacity: 0,
             height: 0,
             onComplete() {
-                cb();
+                cb(console.log('cb'));
             },
             ease: Elastic.easeOut.config(0.25, 1),
         })
@@ -21,7 +21,7 @@ export default {
             opactiy: 0,
             height: 0,
             onComplete() {
-                cb();
+                cb(console.log('cb'));
             },
             ease: Elastic.easeIn.config(0.25, 1)
         })

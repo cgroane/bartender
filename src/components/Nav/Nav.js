@@ -3,11 +3,13 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import FontAwesome from 'react-fontawesome';
-import AppBar from 'material-ui/AppBar';
+// import AppBar from 'material-ui/AppBar';
 
 import FullNav from './FullNav/FullNav';
+import connectWithTransitionGroup from 'connect-with-transition-group'
+import ReactTransitionGroup from 'react-addons-transition-group';
 import {Navbar, FormControl, FormGroup, Button} from 'react-bootstrap';
-import {requestUser, getAllRecipes, updateSearchTerms, showNav, hideNav} from './../../ducks/reducer';
+import {requestUser, getAllRecipes, updateSearchTerms, showNav} from './../../ducks/reducer';
 import './Nav.css';
 
 
@@ -16,12 +18,20 @@ import './Nav.css';
 class Nav extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+          showNavOverlay: false
+        }
 
         this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.showHideFullNav = this.showHideFullNav.bind(this);
 
     }
+    showHideFullNav() {
+      this.setState({showNavOverlay:!this.state.showNavOverlay})
+    }
+    
     handleLogin() {
         window.location.href = 'http://localhost:3001/api/login';
     }
@@ -60,11 +70,12 @@ if (this.props.user == {} ) {
   }
   else {
     var navbarInstance = (
-      <AppBar title={<Link to="/" > <span >B.Y.O.B</span> </Link>}  iconClassNameRight="muidocs-icon-navigation-expand-more" />
+      null
+      // <AppBar title={<Link to="/" > <span >B.Y.O.B</span> </Link>}  iconClassNameRight="muidocs-icon-navigation-expand-more" />
     )
   }
-  if (this.props.showNavOverlay) {
-    var showNavInstance = <FullNav/>
+  if (this.state.showNavOverlay) {
+    var showNavInstance =  <FullNav  /> 
   }
   else {
     var showNavInstance = null;
@@ -80,11 +91,13 @@ if (this.props.user == {} ) {
                 </Link>
               </div>
               <div className="menuIconContainer" >
-                <FontAwesome className="menuIcon" name="bars" size="2x" style={{textShadow: '0 1px 0 rgba(0,0,0,0.1)', color: '#FFC15E'}} onClick={() =>   this.props.showNav()} />  
+                <FontAwesome className="menuIcon" name="bars" size="2x" style={{textShadow: '0 1px 0 rgba(0,0,0,0.1)', color: '#FFC15E'}} onClick={() =>   this.showHideFullNav()} />  
               </div>
             </div>
           </nav>
-            {showNavInstance}
+           <ReactTransitionGroup component="div" >
+            {this.state.showNavOverlay && <FullNav requestUser={this.props.requestUser} hideNav={this.showHideFullNav}  username={this.props.user.username} />} 
+            </ReactTransitionGroup>
         </div>
         )
     }
@@ -92,6 +105,7 @@ if (this.props.user == {} ) {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, {requestUser, getAllRecipes, updateSearchTerms, showNav, hideNav})(Nav);
+export default connectWithTransitionGroup( 
+                  connect(mapStateToProps, {requestUser, getAllRecipes, updateSearchTerms, showNav}, null, {withRef: true})(Nav));
 
 //redux not connecting to nav

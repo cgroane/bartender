@@ -136,13 +136,25 @@ class RecipeDetails extends Component {
         return (
             <div className="recipeDetailsContainer" >
                 
+                
                 <div className="recipeInfo">
-                    <div className="recipeTitle"><h1>{recipe_title}</h1></div>
-                    <div className="recipeDescription" >{recipe_description}</div>
-                    <div className="amountServed" >Serves: {serves}</div>
-                    <div className="addedBy" >Recipe Added By: {username}</div>
+                    <div className="recipeImage" >
+                        <div className="recipeImageContainer" >
+                            <img src={image_url}/>
+                        </div>
+                        <div className="recipeDataContainer" >
+                            <div className="recipeTitle"><h1>{recipe_title}</h1></div>
+                            <div className="recipeDescription" >{recipe_description}</div>
+                            <div className="amountServed" >Serves: {serves}</div>
+                            <div className="addedBy" >Recipe Added By: {username}</div>
+                            <div>{addToFavoritesButton}</div>
+                        </div>
+                    </div>
+                    
+                    
+                    
                     <div className="recipeDetailsButtonContainer" >
-                        {addToFavoritesButton}
+                        
                         
                         
                         {ingredientDisplay}
@@ -154,6 +166,9 @@ class RecipeDetails extends Component {
                     </div>
                 </div>
                 <div className="commentsContainer" >
+                    <div className="commentHeader" >
+                        <h4>COMMENTS:</h4>
+                    </div>
                     <div className="commentsList" >
                         {commentsDisplay}
                     </div>

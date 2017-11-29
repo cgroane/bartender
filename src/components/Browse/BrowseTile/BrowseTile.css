@@ -1,30 +1,73 @@
 .browseCard {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 4px 4px 8px 0 rgba(0,0,0,0.8);
     transition: 0.3s;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     background: white;
     margin: 8px;
-    border-radius: 7px;
+    border-radius: 1px;
     width: 275px;
     height: auto;
+    border: 0.5px solid black;
 }
 
 .browseCard:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    text-decoration: none;
+    color: #FFC15E;
+    width: 280px;
+    height: 315px;
 }
 
 .browseCardText{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 5px;
     padding-left: 10px;
     overflow-y: scroll;
 }
 
+.browseCardText:hover {
+    text-decoration: none;
+    color: #FFC15E;
+}
+
+.browseCardText h3 {
+    font-size: 20px;
+    color: black;
+}
+.browseCardText h3:hover{
+    text-decoration: none;
+    color: #FFC15E;
+}
+
+.browseCardText p{
+    font-size: 15px;
+    color: black;
+}
+.browseCardText p:hover {
+    text-decoration: none;
+    color: #FFC15E;
+}
+.browseCardText a {
+    text-decoration: none;
+    color: #F06543
+}
+
 .browseCardImage{
     height: 200px;
-    width: 100%;
-    border-top-left-radius: 6.2px;
-    border-top-right-radius: 6.2px;
+    width: 96%;
+    margin: 0 auto;
+    border: 1px solid grey;
+    
+    
 }
+.browseCardImageContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 2%;  
+}
+

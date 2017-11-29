@@ -4,10 +4,9 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 import FullNavAnimation from './FullNavAnimation';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
-
+import connectWithTransitionGroup from 'connect-with-transition-group'
 import './FullNav.css';
-import {requestUser, getAllRecipes, updateSearchTerms, showNav, hideNav} from './../../../ducks/reducer';
+import {requestUser, getAllRecipes, updateSearchTerms, showNav} from './../../../ducks/reducer';
 
 
 class FullNav extends Component {
@@ -18,12 +17,18 @@ class FullNav extends Component {
         this.handleLogin = this.handleLogin.bind(this);
         this.handleItemClick = this.handleItemClick.bind(this);
     }
+    
     componentDidMount() {
+        console.log(this)
         this.props.requestUser();
        
     }
-    componentWWillEnter(cb) {
-        FullNavAnimation.show(this, cb);
+    componentWillEnter(cb) {
+        console.log("com[onent entered")
+        FullNavAnimation.show(this.appNav, cb);
+    }
+    componentWillLeave(cb) {
+        FullNavAnimation.hide(this.appNav, cb)
     }
     handleLogin() {
         window.location.href = 'http://localhost:3001/api/login';
@@ -33,9 +38,9 @@ class FullNav extends Component {
     }
     render() {
         return (
-            <div className="fullNavContainer FullNavOverlay" >
+            <div className="fullNavContainer FullNavOverlay" ref={ref => this.appNav = ref} >
                 <div className="fullNavBrand" >
-                    <Link to="/" ><span >B.Y.O.B.</span></Link>
+                    <Link to="/" onClick={this.handleItemClick} ><span >B.Y.O.B.</span></Link>
                 </div>
                 <div className="closeNav" >
                     <span onClick={() => this.props.hideNav()} >X</span>
@@ -53,7 +58,7 @@ class FullNav extends Component {
                         </div>
                         <div className="fullNavItem" >
                             <Link to={`/dashboard`} onClick={this.handleItemClick} >
-                                {this.props.user.username}
+                                {this.props.username}
                             </Link>
                         </div>
                         <div className="fullNavItem" onClick={this.handleItemClick} >
@@ -76,4 +81,4 @@ class FullNav extends Component {
 }
 
 const mapStateToProps = state => state;
-export default connect(mapStateToProps, {requestUser, getAllRecipes, updateSearchTerms, showNav, hideNav})(FullNav);
+export default FullNav;

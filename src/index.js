@@ -12,11 +12,11 @@ import registerServiceWorker from './registerServiceWorker';
 ReactDOM.render(
 
     <Provider store={store}>
-        <MuiThemeProvider>
+        
             <BrowserRouter>
                 <App />
             </BrowserRouter> 
-        </MuiThemeProvider>
+        
     </Provider>,
 
     document.getElementById('root'));
