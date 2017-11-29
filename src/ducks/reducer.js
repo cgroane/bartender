@@ -33,6 +33,8 @@ const UPDATE_EDIT_USERNAME = "UPDATE_EDIT_USERNAME";
 const UPDATE_EDIT_USER_IMAGE = "UPDATE_EDIT_USER_IMAGE";
 const UPDATE_USER_SAVE =  "UPDATE_USER_SAVE";
 const LOAD_EDIT_DATA = "LOAD_EDIT_DATA";
+const SHOW_NAV_OVERLAY = "SHOW_NAV_OVERLAY";
+const HIDE_NAV_OVERLAY = "HIDE_NAV_OVERLAY";
 
 
 //action creators
@@ -48,6 +50,18 @@ const LOAD_EDIT_DATA = "LOAD_EDIT_DATA";
 //         })
 //     })
 // }
+export function showNav() {
+    return {
+        type: SHOW_NAV_OVERLAY,
+        payload: true
+    }
+}
+export function hideNav() {
+    return {
+        type: HIDE_NAV_OVERLAY,
+        payload: false
+    }
+}
 export function loadEditData(userObj) {
     return {
         type: LOAD_EDIT_DATA,
@@ -264,7 +278,8 @@ const initialState = {
     editUser: {
         username: '',
         image_url: ''
-    }
+    },
+    showNavOverlay: false,
 };
 
 //reducer
@@ -358,6 +373,10 @@ export default function reducer(state = initialState, action) {
                 editUserData = action.payload
                 return Object.assign({}, state, {editUser:editUserData})
             }
+        case SHOW_NAV_OVERLAY:
+            return Object.assign({}, state, {showNavOverlay: action.payload})
+        case HIDE_NAV_OVERLAY:
+            return Object.assign({}, state, {showNavOverlay: action.payload})
          default:
             return state;
     }

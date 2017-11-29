@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 import AppBar from 'material-ui/AppBar';
 
-
+import FullNav from './FullNav/FullNav';
 import {Navbar, FormControl, FormGroup, Button} from 'react-bootstrap';
 import {requestUser, getAllRecipes, updateSearchTerms, showNav, hideNav} from './../../ducks/reducer';
 import './Nav.css';
@@ -63,6 +63,12 @@ if (this.props.user == {} ) {
       <AppBar title={<Link to="/" > <span >B.Y.O.B</span> </Link>}  iconClassNameRight="muidocs-icon-navigation-expand-more" />
     )
   }
+  if (this.props.showNavOverlay) {
+    var showNavInstance = <FullNav/>
+  }
+  else {
+    var showNavInstance = null;
+  }
         return (
            <div className="navContainer" > 
            
@@ -72,50 +78,20 @@ if (this.props.user == {} ) {
                 <Link to="/" className="navbar-brand js-scroll-trigger nav-item" >
                     B.Y.O.B
                 </Link>
-                <input type="text" className="navSearchBar" placeholder="Search Recipes" onChange={(e) => this.props.updateSearchTerms(e.target.value)} />
-                  <Link to="/" className="nav-link js-scroll-trigger" >
-                      <button className="navSearchButton" >SEARCH</button>
-                  </Link>
               </div>
-            <button className="navbar-toggler navbar-toggler-right collapsed" type="button" >
-                Menu
-                
-            </button>
-
-            <FontAwesome className="menuIcon" name="bars" size="2x" style={{textShadow: '0 1px 0 rgba(0,0,0,0.1)' }} onClick={this.props.showNav} />  
-            
-           
-              <div className="collapse navbar-collapse" >
-              
-                  <ul className="navbar-nav text-uppercase ml-auto" >
-                    <li className="nav-item">
-                      <Link to={`/dashboard`} className="nav-item" >
-                        {this.props.user.username}
-                      </Link>
-                    </li>
-                    <li className="nav-item" >
-                      <Link onClick={this.handleLogin} to="/" className="nav-item" >
-                        Logout
-                      </Link>
-                    </li>
-                    <li className="nav-item" >
-                    <Link to="/browse"  onClick={this.handleClick} className="nav-item" >
-                      Browse
-                    </Link>
-                    </li>
-                  </ul>
-                  
+              <div className="menuIconContainer" >
+                <FontAwesome className="menuIcon" name="bars" size="2x" style={{textShadow: '0 1px 0 rgba(0,0,0,0.1)', color: '#FFC15E'}} onClick={() =>   this.props.showNav()} />  
               </div>
-            
+            </div>
+          </nav>
+            {showNavInstance}
         </div>
-        </nav>
-           </div>
         )
     }
 }
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, {requestUser, getAllRecipes, updateSearchTerms})(Nav);
+export default connect(mapStateToProps, {requestUser, getAllRecipes, updateSearchTerms, showNav, hideNav})(Nav);
 
 //redux not connecting to nav
