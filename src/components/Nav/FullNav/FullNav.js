@@ -16,6 +16,7 @@ class FullNav extends Component {
 
         this.handleLogin = this.handleLogin.bind(this);
         this.handleItemClick = this.handleItemClick.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
     
     componentDidMount() {
@@ -32,6 +33,9 @@ class FullNav extends Component {
     }
     handleLogin() {
         window.location.href = 'http://localhost:3001/api/login';
+    }
+    handleLogout() {
+        window.location.href = "http://localhost:3001/logout"
     }
     handleItemClick() {
         this.props.hideNav();
@@ -56,21 +60,30 @@ class FullNav extends Component {
                                 BROWSE
                             </Link>
                         </div>
+                        {this.props.username &&
                         <div className="fullNavItem" >
                             <Link to={`/dashboard`} onClick={this.handleItemClick} >
                                 {this.props.username}
                             </Link>
-                        </div>
+                        </div>}
                         <div className="fullNavItem" onClick={this.handleItemClick} >
                             <Link to="/new_recipe" >
                                 Add New Recipe
                             </Link>
                         </div>
+                        
+                        {!this.props.username &&
                         <div className="fullNavItem" onClick={this.handleItemClick} >
                             <Link to="/" onClick={this.handleLogin} >
+                                LOGIN
+                            </Link>
+                        </div>}
+                        {this.props.username &&
+                        <div className="fullNavItem" onClick={this.handleItemClick} >
+                            <Link to="/" onClick={this.handleLogout} >
                                 LOGOUT
                             </Link>
-                        </div>
+                        </div>}
                     </div>
                     
                 </div>

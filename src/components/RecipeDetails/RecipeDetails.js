@@ -125,8 +125,8 @@ class RecipeDetails extends Component {
         })
         var ingredientDisplay = this.props.recipeIngredients.map((cur, ind) => {
             return (
-                <div key={ind}>
-                    <span>{cur.title}</span>
+                <div key={ind} className="ingredientData" >
+                    <span>{`${cur.quantity} ${cur.unit} ${cur.title}`}</span>
                 </div>
             )
         })
@@ -148,6 +148,13 @@ class RecipeDetails extends Component {
                             <div className="amountServed" >Serves: {serves}</div>
                             <div className="addedBy" >Recipe Added By: {username}</div>
                             <div>{addToFavoritesButton}</div>
+                            <div className="ingredientsContainer" >
+                                <h4>Ingredients:</h4>
+                                <hr/>
+                                <div className="ingredientsDisplayContainer" >
+                                    {ingredientDisplay}
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
@@ -157,7 +164,7 @@ class RecipeDetails extends Component {
                         
                         
                         
-                        {ingredientDisplay}
+                        
                     </div>
 
                     <hr/>

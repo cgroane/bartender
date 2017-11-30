@@ -1,9 +1,16 @@
 .commentContainer {
-    background: rgba(0,0,0,0.6)
-    
+    background: rgba(93,115,126,1);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    margin-bottom: 5px;
 }
 
 .nameContentDivider {
     width: 100px;
     margin: 3px;
+}
+.usernameContainer {
+    padding: 3px;
+}
+.commentContent {
+    padding: 3px;
 }

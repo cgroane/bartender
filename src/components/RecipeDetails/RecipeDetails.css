@@ -43,6 +43,7 @@ textarea {
     margin-right: 15px;
     border: 2px solid #FFC15E;
     padding: 10px;
+    background: white;
 }
 
 .recipeDetailsButtonContainer{
@@ -80,7 +81,7 @@ textarea {
     
     top: 10px;
     left: 10px;
-    width: 400px;
+    width: 430px;
     height: 320px;
     margin-right: 20px;
 }
@@ -97,7 +98,8 @@ textarea {
     border: 2px solid #FFC15E;
     padding-left: 20px;
     padding-right: 20px;
-    height: 250px;
+    height: 500px;
+    padding-top: 5px;
 }
 .stepsParentContainer hr {
     border-top: 1px solid #FFC15E;
@@ -115,12 +117,54 @@ textarea {
 .recipeImage {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     width: auto;
-
+    background: rgba(93,115,126,1);
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .recipeDataContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
+.recipeImage img{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.ingredientsDisplayContainer {
+    display: flex;
+    flex-wrap: wrap;
+    height: 70px;
+    align-items: center;
+    width: 100%;
+
+}
+.ingredientData {
+    margin: 5px;
+}
+
+@media screen and (max-width: 1024px){
+    .recipeDetailsContainer {
+        font-size: 12px;
+    }
+    .recipeImage {
+        display: flex;
+        flex-direction: column;
+        padding: 5px auto;
+        width: 430px;
+        margin: 15px auto;
+        overflow-y: auto;
+    }
+    .stepsParentContainer {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: stretch;
+        
+    }
+    .recipeDataContainer{
+        padding-left: 10px;
+    }
+}   

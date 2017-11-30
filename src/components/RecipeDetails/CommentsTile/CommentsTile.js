@@ -26,7 +26,7 @@ class CommentsTile extends Component {
                         {this.props.content}
                     </p>
                 </div>
-                <hr/>
+                
             </div>
         )
     }

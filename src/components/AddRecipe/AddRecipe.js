@@ -204,7 +204,7 @@ class AddRecipe extends Component {
             <Form inline>
                 <div className="addIngredientButtonContainer" >{stepsAddDisplay}</div>
                 <div><Button onClick={this.handleStepAdd} >+</Button></div>
-                <Button onClick={this.handleStepsSave} >Save Ingredients List</Button>
+                <Button onClick={this.handleStepsSave} >Save Steps List</Button>
                 {/* loop through steps add display, access the value  */}
             </Form>
         </div>

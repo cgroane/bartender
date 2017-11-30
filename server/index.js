@@ -81,6 +81,10 @@ app.get(
   "/api/login",
   passport.authenticate("auth0", { successRedirect: "http://localhost:3000/dashboard" })
 );
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('http://localhost:3000/');
+})
 
 
 
