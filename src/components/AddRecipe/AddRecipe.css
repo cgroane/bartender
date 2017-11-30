@@ -17,6 +17,7 @@
     justify-content: center;
     width: 75%;
     z-index: 1040;
+    margin: 10px auto;
 }
 
 .accordion{

@@ -86,3 +86,14 @@ a {
 a:hover {
   text-decoration: none;
 }
+
+@media screen and (max-width: 480px) {
+    .component_Container{
+      display: block;
+      overflow-x: hidden;
+    }
+    .commentsContainer{
+      width: 98%;
+      
+    }
+}

@@ -113,7 +113,7 @@ class RecipeDetails extends Component {
             var commentsDisplay = <div><span>This recipe has no comments yet. Add your thoughts below!</span></div>
         }
         if (this.props.user.user_id == drink.user_id) {
-            var editButton = <Button onClick={() => this.props.showEditRecipeModal()} >Edit this recipe</Button>
+            var editButton = <button onClick={() => this.props.showEditRecipeModal()} >Edit this recipe</button>
         }
         else {
             var editButton = null;
@@ -146,10 +146,12 @@ class RecipeDetails extends Component {
                             <div className="recipeTitle"><h1>{recipe_title}</h1></div>
                             <div className="recipeDescription" >{recipe_description}</div>
                             <div className="amountServed" >Serves: {serves}</div>
-                            <div className="addedBy" >Recipe Added By: {username}</div>
+                            
                             <div>{addToFavoritesButton}</div>
                             <div className="ingredientsContainer" >
-                                <h4>Ingredients:</h4>
+                                <div className="ingredientHeader" >
+                                    <h4>Ingredients:</h4>
+                                </div>
                                 <hr/>
                                 <div className="ingredientsDisplayContainer" >
                                     {ingredientDisplay}
@@ -157,19 +159,9 @@ class RecipeDetails extends Component {
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    
-                    <div className="recipeDetailsButtonContainer" >
-                        
-                        
-                        
-                        
-                    </div>
 
-                    <hr/>
                     <div className="stepsParentContainer" >
-                    {stepsDisplay}
+                        {stepsDisplay}
                     </div>
                 </div>
                 <div className="commentsContainer" >
@@ -185,8 +177,9 @@ class RecipeDetails extends Component {
                     </div>
 
                 </div>
-                <div className="editButtonContainer" >{editButton}</div>
+                
                 <div>{viewModal}</div>
+                <div className="editButtonContainer" >{editButton}</div>
             </div>
         )
     }

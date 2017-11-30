@@ -27,6 +27,7 @@
     padding: 5px;
     padding-left: 10px;
     overflow-y: scroll;
+    height: 8vh;;
 }
 
 .browseCardText:hover {
