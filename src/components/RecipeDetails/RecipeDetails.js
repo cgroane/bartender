@@ -179,7 +179,7 @@ class RecipeDetails extends Component {
                 </div>
                 
                 <div>{viewModal}</div>
-                <div className="editButtonContainer" >{editButton}</div>
+                
             </div>
         )
     }

@@ -4,12 +4,13 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background: white;
+    background: rgba(93,115,126,0.98);
     margin: 8px;
     border-radius: 1px;
     width: 275px;
     height: auto;
-    border: 0.5px solid black;
+    color: white;
+    
 }
 
 .browseCard:hover{
@@ -27,7 +28,8 @@
     padding: 5px;
     padding-left: 10px;
     overflow-y: scroll;
-    height: 8vh;;
+    height: 8vh;
+    white-space: pre-wrap;
 }
 
 .browseCardText:hover {
@@ -37,7 +39,7 @@
 
 .browseCardText h3 {
     font-size: 20px;
-    color: black;
+    color: white;
 }
 .browseCardText h3:hover{
     text-decoration: none;
@@ -46,7 +48,7 @@
 
 .browseCardText p{
     font-size: 15px;
-    color: black;
+    color: white;
 }
 .browseCardText p:hover {
     text-decoration: none;

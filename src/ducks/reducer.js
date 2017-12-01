@@ -178,8 +178,9 @@ export function getRecommended(title) {
         payload: axios.get(`/api/recipes/${title}/recommended`).then(response => {
             if(response.data.length !== 0){
                 // console.log("not a zero length recommended")
-            // console.log(response.data[0].title)
+            console.log(response.data[0])
             return response.data[0].recipe_title
+                    
             }
             // console.log("zero length recommended response")
             return response
@@ -295,6 +296,7 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {isLoading: true})
         case GET_RECOMMENDED + "_FULFILLED":
             return Object.assign({}, state, {recommended: action.payload, isLoading:false})
+        
             // [...state.recommended, ...action.payload]
         case GET_FAVORITES + "_PENDING":
             return Object.assign({}, state, {isLoading: true})

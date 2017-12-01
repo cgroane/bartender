@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import Collapsible from 'react-collapsible';
 import {requestUser, getFavorites, updateRecipeDescription, updateRecipeServes, updateRecipeTitle, updateRecipeImage} from '../../ducks/reducer';
-import {Form, inline, horizontal, FormControl, ControlLabel, Col, FormGroup, Label, Button} from 'react-bootstrap';
+import {Form, inline, horizontal, FormControl, ControlLabel, Col, FormGroup, Label, Button, Collapse} from 'react-bootstrap';
 import './AddRecipe.css';
 
 
@@ -36,6 +37,7 @@ class AddRecipe extends Component {
         this.handleIngredientChange = this.handleIngredientChange.bind(this);
         this.handleIngredientsSave = this.handleIngredientsSave.bind(this);
         this.handleStepsSave = this.handleStepsSave.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     }
 
     componentDidMount() {
@@ -62,8 +64,9 @@ class AddRecipe extends Component {
         })
     }
     
-    handleRecipeSave() {
+    handleRecipeSave(e) {
         console.log(this.props)
+        e.preventDefault();
         
         const {recipeAddTitle, recipeAddDescription, recipeAddImage, recipeAddServes} = this.props;
         var recipe = {
@@ -120,35 +123,41 @@ class AddRecipe extends Component {
         if(this.state.recipeAdded.recipe_id) {
         axios.delete(`/api/recipes/${this.state.recipeAdded.recipe_id}`).then(response => response.data)
     } else {
-        // this.addForm.reset();
+        
     }
 }
    
 
     render() {
-        function FieldGroup({id, label, ...props}) {
-           return (
-           <FormGroup controlId={id}>
-                <ControlLabel>{label}:</ControlLabel>
-                <FormControl {...props} />
-            </FormGroup>
-        )
-    }
+     
         if (this.state.recSaved){
         var ingredientsAddDisply = this.state.inputIngredientsArray.map((cur,ind) => {
             return (
                 
-                    <FormGroup controlId="formIngredientsQty" key={ind}>
-                        <ControlLabel>Quantity</ControlLabel>
-                        <FormControl placeholder="eg. 1/2, .5, 1, 1 and 3/4" onChange={(e) => this.handleIngredientChange(e.target.value, ind, "quantity")} />
-
-                        <ControlLabel>Unit</ControlLabel>
-                        <FormControl placeholder="eg. shot, tsp, ounce" onChange={(e) => this.handleIngredientChange(e.target.value, ind, "unit")} />
-
-                        <ControlLabel>Title:</ControlLabel>
-                        <FormControl placeholder="eg. shot, tsp, ounce" onChange={(e) => this.handleIngredientChange(e.target.value, ind, "title")} />
+                    <form className="ingredientsForm" key={ind}>
+                        <div className="ingredientInputContainer col-4" >
+                            <input className="ingredientFormInput" type="text" placeholder="eg. 1/2, .5, 1, 1 and 3/4" onChange={(e) => this.handleIngredientChange(e.target.value, ind, "quantity")} />
+                            <div className="ingredientFormLabelContainer" >
+                                <span>Quantity</span>
+                            </div>
+                            
+                        </div>
+                        <div className="ingredientInputContainer col-4" >
+                            <input className="ingredientFormInput" type="text" placeholder="eg. shot, tsp, ounce" onChange={(e) => this.handleIngredientChange(e.target.value, ind, "unit")} />
+                            <div className="ingredientFormLabelContainer" >
+                                <span>Unit</span>
+                            </div>
+                            
+                        </div>
+                        <div className="ingredientInputContainer col-4" >
+                            <input className="ingredientFormInput" type="text" placeholder="eg. shot, tsp, ounce" onChange={(e) => this.handleIngredientChange(e.target.value, ind, "title")} />
+                            <div className="ingredientFormLabelContainer" >
+                                <span>Title:</span>
+                            </div>
+                            
+                        </div>
                         {/* <div onClick={this.handleRemoveIngredient(ind)}>-</div> */}
-                    </FormGroup>
+                    </form>
                     
                 
                 
@@ -164,74 +173,107 @@ class AddRecipe extends Component {
     var stepsAddDisplay = this.state.inputStepsArray.map((cur, ind) => {
             return (
                 
-                    <FormGroup controlId="formStepsNumber" key={ind} >
-                        <ControlLabel>Step Number:</ControlLabel>
-                        <FormControl placeholder="use a number" onChange={(e) => this.handleStepsChange(e.target.value, ind, "step_number")} />
-
-                        <ControlLabel>Description</ControlLabel>
-                        <FormControl placeholder="describe this process in detail" onChange={(e) => this.handleStepsChange(e.target.value, ind, "step_description")} />
-                    </FormGroup>
+                    <form className="stepsForm" key={ind} >
+                        <div className="ingredientInputContainer col-6" >
+                            <input type="text" className="ingredientFormInput" placeholder="use a number" onChange={(e) => this.handleStepsChange   (e.target.value, ind, "step_number")} />
+                            <div className="ingredientFormLabelContainer" >
+                                <span>Step Number:</span>
+                            </div>
+                        </div>
+                        <div className="ingredientInputContainer col-6" >
+                            <input type="text" className="ingredientFormInput" placeholder="describe this process in detail" onChange={(e) => this.handleStepsChange(e.target.value, ind, "step_description")} />
+                            <div className="ingredientFormLabelContainer" >
+                                <span>Description</span>
+                            </div>
+                        </div>
+                    </form>
                 
             )
         })
 } else {
     var stepsAddDisplay = <div>Save your recipe before adding steps</div>
 }
-
+const recipeAddTrigger = (
+    <div className="collapsibleCard" >
+        <h2>Add Recipe</h2>
+    </div>
+)
+const ingredientAddTrigger = (
+    <div className="collapsibleCard" >
+    <h2>Add Ingredients</h2>
+</div>
+)
+const stepAddTrigger = (
+    <div className="collapsibleCard" >
+    <h2>Add Steps</h2>
+</div>
+)
 
         return (
-            <div className="addRecipe" >
+            
+            <div className="addRecipe" id="recipeForm" >
+               <Collapsible trigger={recipeAddTrigger} > 
                 <form>
-            <FormGroup controlId="formControlsText">
-                <ControlLabel>Title</ControlLabel>
-                <FormControl placeholder="Give your recipe a name!" onChange={(e) => this.props.updateRecipeTitle(e.target.value)} required />
-            </FormGroup>
-            <FormGroup controlId="formControlsText">
-                <ControlLabel>Description</ControlLabel>
-                <FormControl placeholder="What's it all about" onChange={(e) => this.props.updateRecipeDescription(e.target.value)} />
-            </FormGroup>
+                    <div className="addRecipeForm" >
+                        <div className="addRecipeFormLabelContainer" >
+                            <span>Title:</span>
+                        </div>
+                        <input type="text" className="addRecipeFormTextbox" placeholder="Give your recipe a name!" onChange={(e) => this.props.updateRecipeTitle(e.target.value)} required />
+                    </div>
+                    <div className="addRecipeForm" >
+                        <div className="addRecipeFormLabelContainer" >
+                            <span>Description:</span>
+                        </div>
+                        <input type="text" className="addRecipeFormTextbox" placeholder="What's it all about?" onChange={(e) => this.props.updateRecipeDescription(e.target.value)} required />
+                    </div>
 
-            <FormGroup controlId="formControlsText">
-                <ControlLabel>Image URL</ControlLabel>
-                <FormControl placeholder="Find a picture and paste the URL here" onChange={(e) => this.props.updateRecipeImage(e.target.value)} />
-            </FormGroup>
+                    <div className="addRecipeForm" >
+                        <div className="addRecipeFormLabelContainer" >
+                            <span>Image URL:</span>
+                        </div>
+                        <input type="text" className="addRecipeFormTextbox" placeholder="PASTE AN IMAGE URL HERE" onChange={(e) => this.props.updateRecipeImage(e.target.value)} required />
+                    </div>
 
-            <FormGroup controlId="formControlsText">
-                <ControlLabel>Serves</ControlLabel>
-                <FormControl placeholder="How many people is this for" onChange={(e) => this.props.updateRecipeServes(e.target.value)} />
-            </FormGroup>
-           <div className="formButtonContainer" >
-                <Button onClick={this.handleRecipeSave} >
+                    <div className="addRecipeForm" >
+                        <div className="addRecipeFormLabelContainer" >
+                            <span>SERVES:</span>
+                        </div>
+                        <input type="text" className="addRecipeFormTextbox" placeholder="How many people is this for" onChange={(e) => this.props.updateRecipeServes(e.target.value)} required />
+                    </div>
+           <div className="formButtonContainerRecipe" >
+                <button onClick={this.handleRecipeSave}>
                     Save
-                </Button>
-                <Button>
-                    Cancel
-                </Button>
+                </button>
             </div>
-            <hr/>
+    
             
 
         </form>
-        <div className="accordion" >
-        <Form inline >
+        </Collapsible>
+        
+        <Collapsible trigger={ingredientAddTrigger} >  
+        <div className="ingredientsContainer" >
             {ingredientsAddDisply}
-        </Form>
-            <div className="addIngredientButtonContainer" >
-                <Button onClick={this.handleIngredientAdd} >+</Button>
-                <Button onClick={this.handleIngredientsSave} >Save Ingredients List</Button>
+        </div>
+            <div className="formButtonContainer" >
+                <button className="col-4" onClick={this.handleIngredientAdd} >ADD</button>
+                <button className="col-4" onClick={this.handleIngredientsSave} >Save Ingredients List</button>
             </div>
             {/* loop through the ingredientsAddDisplay */}
-        </div>
-        <hr/>
-        <div className="accordion" >
-            <Form inline>
-                <div className="addIngredientButtonContainer" >{stepsAddDisplay}</div>
-                <div><Button onClick={this.handleStepAdd} >+</Button></div>
-                <Button onClick={this.handleStepsSave} >Save Steps List</Button>
+        </Collapsible>
+        
+        <Collapsible trigger={stepAddTrigger} > 
+                <div className="stepsContainer" >
+                    {stepsAddDisplay}
+                </div>
+                
+                <div  className="formButtonContainer" >
+                    <button onClick={this.handleStepAdd} >ADD</button>
+                    <button onClick={this.handleStepsSave} >Save Steps List</button>
+                </div>
                 {/* loop through steps add display, access the value  */}
-            </Form>
-        </div>
-                <div className="cancelContainer" >
+            </Collapsible>
+                <div className="cancelContainer" > 
                     <button onClick={this.handleCancel} >Cancel</button>
                 </div>
             </div>

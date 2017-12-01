@@ -21,9 +21,9 @@
 
 .component_Container {
   color: white;
-  margin: 75px auto 0 auto;
+  margin: 90px auto 0 auto;
   width: 98%;
-  height: 100%;
+  padding: 0 auto;
   display: flex;
   justify-content: center;
 

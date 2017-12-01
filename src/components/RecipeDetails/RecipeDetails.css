@@ -9,6 +9,7 @@
 }
 .recipeInfo {
     width: 96%;
+    white-space: pre-wrap;
 
 }
 
@@ -61,6 +62,10 @@ textarea {
     text-align: center;
     
 }
+.stepDescContainer{
+    flex-wrap: wrap;
+    white-space: pre-wrap;
+}
 .commentButton {
     height: 50px;
     text-align: center;
@@ -102,6 +107,7 @@ textarea {
     height: 400px;
     padding-top: 5px;
     width: auto;
+    margin-top: 15px;
 }
 .stepsParentContainer hr {
     border-top: 1px solid #FFC15E;
@@ -125,7 +131,7 @@ textarea {
     width: auto;
     background: rgba(93,115,126,1);
     color: white;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 15px 16px 0 rgba(0,0,0,0.8);
 }
 .recipeDataContainer {
     display: flex;
@@ -148,9 +154,7 @@ textarea {
 }
 
 @media screen and (max-width: 1024px){
-    .recipeDetailsContainer {
-        font-size: 12px;
-    }
+    
     .recipeImage {
         display: flex;
         flex-direction: column;
