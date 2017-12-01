@@ -125,6 +125,9 @@ app.put('/api/recipes/:recipe_id/edit', recipeCtrl.updateRecipe);
 app.put('/api/recipes/:recipe_id/steps/edit', recipeCtrl.updateRecipeSteps);
 app.put('/api/recipes/:recipe_id/ingredients/edit', recipeCtrl.updateRecipeIngredients);
 app.post('/api/recipes/ingredients/:recipe_id', recipeCtrl.addIngredient);
+app.delete('/api/recipes/:recipe_id', recipeCtrl.deleteRecipe);
+app.delete('/api/recipes/ingredients/:recipe_id', recipeCtrl.deleteIngredients);
+app.delete('/api/recipes/steps/:recipe_id', recipeCtrl.deleteSteps);
 
 //user attributes
 app.get('/api/users/dashboard', userCtrl.getAllUserData);

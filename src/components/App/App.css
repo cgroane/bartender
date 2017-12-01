@@ -86,6 +86,14 @@ a {
 a:hover {
   text-decoration: none;
 }
+.App {
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+  scroll-snap-points-y: repeat(100%);
+  scroll-snap-type: mandatory;
+  scroll-snap-destination: 50% 50%;
+}
 
 @media screen and (max-width: 480px) {
     .component_Container{

@@ -36,6 +36,7 @@ class FullNav extends Component {
     }
     handleLogout() {
         window.location.href = "http://localhost:3001/logout"
+        
     }
     handleItemClick() {
         this.props.hideNav();

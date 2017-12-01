@@ -42,13 +42,23 @@ class AddRecipe extends Component {
         this.setState({recSaved:false})
     }
     handleStepsSave() {
+        for (var i =0; i<this.state.inputStepsArray.length; i++) {
+            if (!this.state.inputStepsArray[i].step_number || !this.state.inputStepsArray[i].step_description || !this.state.inputStepsArray[i].recipe_id) {
+             return alert("No blanks please")
+         }
+     }
         this.state.inputStepsArray.forEach((cur, ind) => {
             return axios.post(`/api/recipes/steps/${this.state.recipeAdded.recipe_id}`, cur).then(response => response.data)
         })
     }
     handleIngredientsSave() {
+       for (var i =0; i<this.state.inputIngredientsArray.length; i++) {
+           if (!this.state.inputIngredientsArray[i].quantity || !this.state.inputIngredientsArray[i].unit || !this.state.inputIngredientsArray[i].title || !this.state.inputIngredientsArray[i].recipe_id) {
+            return alert("No blanks please")
+        }
+    }
         this.state.inputIngredientsArray.forEach((cur, ind) => {
-            return axios.post(`/api/recipes/ingredients/${this.state.recipeAdded.recipe_id}`, cur).then(response => response.data)
+                return axios.post(`/api/recipes/ingredients/${this.state.recipeAdded.recipe_id}`, cur).then(response => response.data)  
         })
     }
     
@@ -61,6 +71,11 @@ class AddRecipe extends Component {
             recipe_description: recipeAddDescription,
             image_url: recipeAddImage,
             serves: recipeAddServes
+        }
+        for (var prop in recipe) {
+            if(!recipe[prop]) {
+                return alert("Fill in all recipe fields")
+            }
         }
         axios.post(`/api/recipes/${this.props.user.user_id}`, recipe).then(response => {
             let tempArr = this.state.inputIngredientsArray.slice()
@@ -100,6 +115,14 @@ class AddRecipe extends Component {
         this.setState({inputStepsArray: tempArr});
 
     }
+    handleCancel() {
+        
+        if(this.state.recipeAdded.recipe_id) {
+        axios.delete(`/api/recipes/${this.state.recipeAdded.recipe_id}`).then(response => response.data)
+    } else {
+        // this.addForm.reset();
+    }
+}
    
 
     render() {
@@ -161,7 +184,7 @@ class AddRecipe extends Component {
                 <form>
             <FormGroup controlId="formControlsText">
                 <ControlLabel>Title</ControlLabel>
-                <FormControl placeholder="Give your recipe a name!" onChange={(e) => this.props.updateRecipeTitle(e.target.value)} />
+                <FormControl placeholder="Give your recipe a name!" onChange={(e) => this.props.updateRecipeTitle(e.target.value)} required />
             </FormGroup>
             <FormGroup controlId="formControlsText">
                 <ControlLabel>Description</ControlLabel>
@@ -208,8 +231,9 @@ class AddRecipe extends Component {
                 {/* loop through steps add display, access the value  */}
             </Form>
         </div>
-                
-
+                <div className="cancelContainer" >
+                    <button onClick={this.handleCancel} >Cancel</button>
+                </div>
             </div>
             
         )

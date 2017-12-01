@@ -36,15 +36,16 @@ class LandingPage extends Component {
         render() {
             // console.log(this.props);
             if(this.props.showUserEditModal) {
-                var userModal = <UserEditModal />
+                var userModal = <UserEditModal onScroll={() => console.log('scrolling')} />
             }  
             else {
                 var userModal = null;
             }
             
             return (
-                <div className="userDashContainer" >
-                    <div className="userDashInfoContainer" >
+                <div className="userDashContainer"  onScroll={() => console.log('scrolling')} >
+                    <div className="userInfoAndHeader" >
+                        <div className="userDashInfoContainer" >
                         Hello World
                         {this.props.user.username && (
                                 <div>
@@ -52,29 +53,37 @@ class LandingPage extends Component {
                                     
                                 </div>
                             )}
-                    </div>
+                        </div>
+                    
                    
-                        <div className="pageHeaderContainer" ><UserTastes/></div>
+                            <div className="pageHeaderContainer" ><UserTastes/></div>
+                        </div>
                         <div className="dashContentContainer">
-                            <div className="pageHeaderContainer" ><PageHeader>Your Go-To's:</PageHeader></div>
-                            <div className="fullPageCarousel" >
-                                <div className="dashContentChild"><Favorites/></div>
+                            <div className="page" >
+                                <div className="pageHeaderContainer" ><PageHeader>Your Go-To's:</PageHeader></div>
+                                <div className="fullPageCarousel" >
+                                    <div className="dashContentChild"><Favorites/></div>
+                                </div>
                             </div>
 
-                            <div className="pageHeaderContainer" ><PageHeader>Your Creations:</PageHeader></div>
-                            <div className="dashContentChild"><MyRecipes/></div>
-
-                            <div className="pageHeaderContainer" ><PageHeader>You might like:</PageHeader></div>
-                            <div className="dashContentChild"><Recommended/></div>
+                            <div className="page" >
+                                <div className="pageHeaderContainer" ><PageHeader>Your Creations:</PageHeader></div>
+                                <div className="dashContentChild"><MyRecipes/></div>
+                            </div>
+                            <div className="page" >
+                                <div className="pageHeaderContainer" ><PageHeader>You might like:</PageHeader></div>
+                                <div className="dashContentChild"><Recommended/></div>
+                            </div>
                         </div>
-                        
-                        <Link to="/new_recipe" >
-                            <Button>
-                                Add new Recipe
-                            </Button>
-                        </Link>
-                        <Button onClick={() => this.props.showUserModal()} >Edit profile</Button>
-                        {userModal}
+                        <div className="editProfile page" >
+                            <Link to="/new_recipe" >
+                                <button className="userDashButton" >
+                                    Add new Recipe
+                                </button>
+                            </Link>
+                            <button className="userDashButton" onClick={() => this.props.showUserModal()} >Edit profile</button>
+                            {userModal}
+                        </div>
                 </div>
         )
     }

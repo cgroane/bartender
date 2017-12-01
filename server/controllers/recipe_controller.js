@@ -106,6 +106,24 @@ module.exports = {
         dbInstance.add_ingredient([req.body.quantity, req.body.unit, req.body.title, req.params.recipe_id])
         .then(res.status(200).send())
         .catch(() => res.status(500).send());
+    },
+    deleteSteps: function (req, res, next) {
+        const dbInstance = req.app.get('db')
+
+        dbInstance.delete_steps([req.params.recipe_id]).then(res.status(200).send())
+        .catch(() => res.status(500).send());
+    },
+    deleteIngredients: function (req, res, next) {
+        const dbInstance = req.app.get('db')
+        
+        dbInstance.delete_ingredients([req.params.recipe_id]).then(res.status(200).send())
+        .catch(() => res.status(500).send());
+    },
+    deleteRecipe: function (req, res, next){
+        const dbInstance = req.app.get('db')
+        
+        dbInstance.delete_recipe([req.params.recipe_id]).then(res.status(200).send())
+        .catch(() => res.status(500).send());
     }
 }
 

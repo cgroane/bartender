@@ -5,7 +5,26 @@
     width: 100%;
     padding: 5px;
     /* height: auto; */
+   
+}
+.userInfoAndHeader{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.page {
+    height: 100vh;
+    width: 100vw;
+    scroll-snap-coordinate: 100% 50%;
 
+}
+.editProfile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .dashContentContainer {
     display: block;
@@ -63,3 +82,30 @@
 .userDashInfoContainer {
     position: relative
 }
+.userDashButton {
+    background: black;
+    border-style: solid;
+    border-color: #FFC15E;
+    border-width: 3px;
+    color: white;
+    font-weight: 20;
+    width: 100px;
+    height: 50px;
+    outline-color: black;
+    border-radius: none;
+    width: 90%;
+    margin: 20px;
+}
+userDashButton a {
+    width: 90%;
+    margin: 20px;
+}
+/* .component_Container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+    scroll-snap-points-y: repeat(100%);
+    scroll-snap-type: mandatory;
+    scroll-snap-destination: 50% 50%;
+    
+} */
