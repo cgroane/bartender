@@ -10,7 +10,7 @@ export default {
             opacity: 0,
             height: 0,
             onComplete() {
-                cb(console.log('cb'));
+                // cb(console.log('cb'));
             },
             
         })
@@ -21,7 +21,7 @@ export default {
             opactiy: 0,
             height: 0,
             onComplete() {
-                cb(console.log('cb'));
+                // cb(console.log('cb'));
             },
             
         })

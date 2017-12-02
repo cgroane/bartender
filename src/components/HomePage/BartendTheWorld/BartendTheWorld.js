@@ -11,14 +11,18 @@ class BartendTheWorld extends Component {
         console.log('component did mount')
     }
 
-    componentWillEnter(cb) {
+    componentDidEnter(cb) {
         console.log("mounted")
-        HomePageAnimation.show(this.homePageText, cb)
+        HomePageAnimation.show(this.homeText, cb)
+    }
+    componentWillAppear(cb) {
+        console.log('component appeared')
+        HomePageAnimation.show(this.homeText, cb)
     }
 
     render() {
         return (
-            <div className="homePageHeaderTextContainer" ref={ref => this.homePageText = ref} >
+            <div className="homePageHeaderTextContainer" ref={ref => this.homeText = ref} >
                 <h1 className="homePageHeader" >BARTEND THE WORLD</h1>
             </div>
         )

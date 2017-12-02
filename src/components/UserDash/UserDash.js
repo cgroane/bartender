@@ -18,7 +18,7 @@ class LandingPage extends Component {
     }
     
     componentDidMount() {
-
+       
         this.props.requestUser().then(id => {
         return (
                 this.props.getFavorites(id.value.user_id) && this.props.getAllRecipes() && this.props.getMyRecipes(id.value.user_id) && this.props.getUserTastes(id.value.user_id).then(tasteData => {
