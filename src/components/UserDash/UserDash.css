@@ -100,6 +100,9 @@ userDashButton a {
     width: 90%;
     margin: 20px;
 }
+.pageHeaderContainer {
+    margin-bottom: 15px;
+}
 /* .component_Container {
     overflow-x: hidden;
     overflow-y: auto;
@@ -109,3 +112,31 @@ userDashButton a {
     scroll-snap-destination: 50% 50%;
     
 } */
+.profileImageContainer {
+    width: 300px;
+    height: 400px;
+}
+.profileImageContainer img {
+    height: 100%;
+    width: 100%;
+}
+.profileUsername {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   
+    white-space: pre-wrap;
+}
+.profileUsername h1 {
+    font-size: 100px;
+}
+@media screen and (max-width: 695px) {
+    .profileUsername h1 {
+        font-size: 80px;
+    }
+}
+
+.dashContentContainer {
+    padding-top: 30px;
+}

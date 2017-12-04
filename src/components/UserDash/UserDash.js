@@ -46,13 +46,14 @@ class LandingPage extends Component {
                 <div className="userDashContainer"  onScroll={() => console.log('scrolling')} >
                     <div className="userInfoAndHeader" >
                         <div className="userDashInfoContainer" >
-                        Hello World
+                        <div className="profileUsername">
                         {this.props.user.username && (
-                                <div>
-                                    {this.props.user.username} & {this.props.user.user_id}
+                                <h1>
+                                    Sup, {this.props.user.username}
                                     
-                                </div>
+                                </h1>
                             )}
+                        </div>
                         </div>
                     
                    
