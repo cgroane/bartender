@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {requestUser, getFavorites, getMyRecipes} from '../../ducks/reducer';
 import { ListGroupItem, ListGroup, Button, PageHeader, Carousel } from 'react-bootstrap';
 
-
+import './MyRecipes.css';
 
 
 
@@ -23,6 +23,7 @@ class MyRecipes extends Component {
     render() {
         // console.log(this.props)
         // if statement to check recipe.user_id against this.props.user_id --> show edit/delete buttons on recipes if so.
+        if (this.props.myRecipes.length > 0) {
         var myRecipesDisplay = this.props.myRecipes.map((cur, ind) => (
             <Carousel.Item key={ind}>
                         <img width={900} height={500} alt="900x500" src={cur.image_url}/>
@@ -34,13 +35,34 @@ class MyRecipes extends Component {
                     </Link>
                     {/* add edit button -- redirect or popup edit modal, get recipe_id, ingredients, steps for recipe */}
                     </Carousel.Item>
-        ))
-        
+            )
+        )   
+    } else {
+            var myRecipesDisplay = (
+                <div  className="nullRecipesDisplay" >
+                    <h1>You haven't created any recipes yet</h1>
+                    <Link to="/new_recipe" >
+                        <button className="userDashButton" >Get Started</button>
+                    </Link>
+                </div>
+                
+                
+                
+            )
+        }
+        if (this.props.myRecipes.length > 0) {
+            var carouselDisplay = (
+                <Carousel>{myRecipesDisplay}</Carousel>
+            )
+        } else {
+            var carouselDisplay = (
+                {myRecipesDisplay}
+            )
+        }
 
         return (
             <div className="dashContentChildContainer" >
-                
-                <Carousel> {myRecipesDisplay}</Carousel>
+                {myRecipesDisplay}
             </div>
         )
     }

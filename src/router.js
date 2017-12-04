@@ -9,6 +9,7 @@ import AddRecipe from './components/AddRecipe/AddRecipe';
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import HomePage from './components/HomePage/HomePage';
 import Browse from './components/Browse/Browse';
+import Search from './components/Search/Search';
 
 
 export default (
@@ -20,6 +21,7 @@ export default (
             <Route path="/new_recipe" component={AddRecipe}/>
             <Route path="/:recipe_id/recipe_details" component={RecipeDetails}/>
             <Route path="/browse" component={Browse}/>
+            <Route path="/search_results" component={Search} />
             <Route component={Nav}/>
         </Switch>
     

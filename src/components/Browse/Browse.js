@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import {Button, Grid, Row} from 'react-bootstrap';
 import BrowseTile from './BrowseTile/BrowseTile';
 import {getAllRecipes, requestUser} from './../../ducks/reducer';
+
+import connectWithTransitionGroup from 'connect-with-transition-group'
+import ReactTransitionGroup from 'react-addons-transition-group';
 import './Browse.css';
 
 
@@ -20,7 +23,11 @@ class Browse extends Component {
         // console.log(this.props);
         
         const browseTileList = this.props.allRecipes.map((cur, ind) => {
-            return (<BrowseTile key={ind} title={cur.recipe_title} descript={cur.recipe_description} rec_id={cur.recipe_id} pic={cur.image_url} servesAmt={cur.serves} />)
+            return (
+            <ReactTransitionGroup component="div">
+                <BrowseTile key={ind} title={cur.recipe_title} descript={cur.recipe_description} rec_id={cur.recipe_id} pic={cur.image_url} servesAmt={cur.serves} getAllRecipes={this.props.getAllRecipes} />
+            </ReactTransitionGroup>
+        )
     })
         return (
             
@@ -34,4 +41,4 @@ class Browse extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps,{getAllRecipes, requestUser})(Browse);
+export default connectWithTransitionGroup(connect(mapStateToProps,{getAllRecipes, requestUser}, null, {withRef: true})(Browse));

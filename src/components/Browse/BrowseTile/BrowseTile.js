@@ -2,13 +2,27 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Button, Col, Thumbnail} from 'react-bootstrap';
-import {getAllRecipes} from './../../../ducks/reducer';
+
+import BrowseAnimation from './BrowseAnimation';
+import ReactTransitionGroup from 'react-addons-transition-group';
 import './BrowseTile.css';
 
 class BrowseTile extends Component {
     constructor(props)   {
         super(props)
     }
+    componentWillAppear(cb) {
+        console.log('cb')
+        BrowseAnimation.show(this.browseCards, cb)
+    }
+    componentDidAppear() {
+        console.log('cb')
+    }
+    componentDidEnter(){
+        console.log('cb')
+    }
+
+
     componentDidMount() {
         this.props.getAllRecipes();
 
@@ -20,7 +34,7 @@ class BrowseTile extends Component {
         
 
         return(
-            <div className="browseCard" >
+            <div className="browseCard" ref={ref => this.browseCards = ref} >
                 
                     <div className="browseCardImageContainer" >
                         <img src={`${this.props.pic}`} alt="242x200" className="browseCardImage" />
@@ -40,4 +54,4 @@ class BrowseTile extends Component {
 }
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, {getAllRecipes})(BrowseTile)
+export default connect(mapStateToProps)(BrowseTile)

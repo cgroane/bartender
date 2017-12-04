@@ -16,7 +16,7 @@ const port = 3001;
 // const connectionString = `postgres://${dbUser}@localhost/${database}`;
 
 const app = express();
-// app.use(express.static(`${__dirname}/../build`));
+app.use(express.static(`${__dirname}/../build`));
 app.use(
   session({
     secret,
@@ -78,12 +78,15 @@ passport.deserializeUser(function(obj, done) {
 });
 
 app.get(
-  "/api/login",
-  passport.authenticate("auth0", { successRedirect: "http://localhost:3000/dashboard" })
+  "/api/login", function(req, res, next) {
+    console.log("redirected")
+    next()
+  },
+  passport.authenticate("auth0", { successRedirect: "/dashboard" })
 );
 app.get('/logout', function(req, res) {
   req.logout();
-  res.redirect('http://localhost:3000/');
+  res.redirect('/');
 })
 
 
@@ -128,6 +131,7 @@ app.post('/api/recipes/ingredients/:recipe_id', recipeCtrl.addIngredient);
 app.delete('/api/recipes/:recipe_id', recipeCtrl.deleteRecipe);
 app.delete('/api/recipes/ingredients/:recipe_id', recipeCtrl.deleteIngredients);
 app.delete('/api/recipes/steps/:recipe_id', recipeCtrl.deleteSteps);
+app.get('/api/recipes/search/:search_terms', recipeCtrl.searchRecs);
 
 //user attributes
 app.get('/api/users/dashboard', userCtrl.getAllUserData);
@@ -138,7 +142,10 @@ app.put('/api/users/:user_id/edit', userCtrl.updateUser);
 
 
 
-
+const path = require('path');
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../build/index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`);

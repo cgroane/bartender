@@ -35,6 +35,7 @@ const UPDATE_USER_SAVE =  "UPDATE_USER_SAVE";
 const LOAD_EDIT_DATA = "LOAD_EDIT_DATA";
 const SHOW_NAV_OVERLAY = "SHOW_NAV_OVERLAY";
 const HIDE_NAV_OVERLAY = "HIDE_NAV_OVERLAY";
+const GET_SEARCH_RESULTS = "GET_SEARCH_RESULTS";
 
 
 //action creators
@@ -50,6 +51,12 @@ const HIDE_NAV_OVERLAY = "HIDE_NAV_OVERLAY";
 //         })
 //     })
 // }
+export function searchRecipes(search_terms) {
+    return {
+        type: GET_SEARCH_RESULTS,
+        payload: axios.get(`/api/recipes/search/${search_terms.toLowerCase()}`).then(response => response.data)
+    }
+}
 export function showNav() {
     return {
         type: SHOW_NAV_OVERLAY,
@@ -281,6 +288,7 @@ const initialState = {
         image_url: ''
     },
     showNavOverlay: false,
+    searchResults: []
 };
 
 //reducer
@@ -379,6 +387,10 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {showNavOverlay: action.payload})
         case HIDE_NAV_OVERLAY:
             return Object.assign({}, state, {showNavOverlay: action.payload})
+        case GET_SEARCH_RESULTS + "_PENDING":
+            return Object.assign({}, state, {isLoading: true})
+        case GET_SEARCH_RESULTS + "_FULFILLED":
+            return Object.assign({}, state, {searchResults: action.payload, isLoading: false})
          default:
             return state;
     }

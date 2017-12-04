@@ -9,7 +9,7 @@ import FullNav from './FullNav/FullNav';
 import connectWithTransitionGroup from 'connect-with-transition-group'
 import ReactTransitionGroup from 'react-addons-transition-group';
 import {Navbar, FormControl, FormGroup, Button} from 'react-bootstrap';
-import {requestUser, getAllRecipes, updateSearchTerms, showNav} from './../../ducks/reducer';
+import {requestUser, getAllRecipes, updateSearchTerms, showNav, searchRecipes} from './../../ducks/reducer';
 import './Nav.css';
 
 
@@ -96,7 +96,7 @@ if (this.props.user == {} ) {
             </div>
           </nav>
            <ReactTransitionGroup component="div" >
-            {this.state.showNavOverlay && <FullNav requestUser={this.props.requestUser} hideNav={this.showHideFullNav}  username={this.props.user.username} />} 
+            {this.state.showNavOverlay && <FullNav requestUser={this.props.requestUser} hideNav={this.showHideFullNav}  username={this.props.user.username} updateSearchTerms={this.props.updateSearchTerms} searchRecipes={this.props.searchRecipes} searchTerms={this.props.searchTerms} />} 
             </ReactTransitionGroup>
         </div>
         )
@@ -106,6 +106,6 @@ if (this.props.user == {} ) {
 const mapStateToProps = state => state;
 
 export default connectWithTransitionGroup( 
-                  connect(mapStateToProps, {requestUser, getAllRecipes, updateSearchTerms, showNav}, null, {withRef: true})(Nav));
+                  connect(mapStateToProps, {requestUser, getAllRecipes, updateSearchTerms, showNav, searchRecipes}, null, {withRef: true})(Nav));
 
 //redux not connecting to nav

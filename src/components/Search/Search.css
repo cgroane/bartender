@@ -1,0 +1,11 @@
+.browseGrid {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    align-items: flex-start;
+    align-content: flex-start;
+    white-space: pre-wrap;
+    text-align: center;
+}

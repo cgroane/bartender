@@ -1,8 +1,15 @@
 .homePageHeader {
     font-size: 200px;
-    
+    overflow-wrap: break-word;
 }
 .homePageHeaderTextContainer {
-    white-space: pre-wrap
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
 
+@media screen and (max-width: 1270px) {
+    .homePageHeader {
+        font-size: 130px;
+        white-space: pre-wrap;
+    }
+}

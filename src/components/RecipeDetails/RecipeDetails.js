@@ -143,11 +143,14 @@ class RecipeDetails extends Component {
                             <img src={image_url}/>
                         </div>
                         <div className="recipeDataContainer" >
-                            <div className="recipeTitle"><h1>{recipe_title}</h1></div>
+                            <div className="recipeTitle">
+                            <h1>{recipe_title}</h1>
+                            <div className="addToFavorites" > {addToFavoritesButton}</div>
+                            </div>
                             <div className="recipeDescription" >{recipe_description}</div>
                             <div className="amountServed" >Serves: {serves}</div>
                             
-                            <div>{addToFavoritesButton}</div>
+                            
                             <div className="ingredientsContainer" >
                                 <div className="ingredientHeader" >
                                     <h4>Ingredients:</h4>

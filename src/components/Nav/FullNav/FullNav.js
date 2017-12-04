@@ -17,6 +17,7 @@ class FullNav extends Component {
         this.handleLogin = this.handleLogin.bind(this);
         this.handleItemClick = this.handleItemClick.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
+        this.handleSearchClick = this.handleSearchClick.bind(this);
     }
     
     componentDidMount() {
@@ -38,52 +39,59 @@ class FullNav extends Component {
         window.location.href = "http://localhost:3001/logout"
         
     }
-    handleItemClick() {
+    handleItemClick(event) {
+   
         this.props.hideNav();
+    }
+    handleSearchClick() {
+        this.props.searchRecipes(this.props.searchTerms);
+        this.props.hideNav()
     }
     render() {
         return (
-            <div className="fullNavContainer FullNavOverlay" ref={ref => this.appNav = ref} >
+            <div className="fullNavContainer FullNavOverlay" ref={ref => this.appNav = ref} onClick={this.props.handleItemClick} >
                 <div className="fullNavBrand" >
-                    <Link to="/" onClick={this.handleItemClick} ><span >B.Y.O.B.</span></Link>
+                    <Link to="/"  ><span >B.Y.O.B.</span></Link>
                 </div>
                 <div className="closeNav" >
                     <span onClick={() => this.props.hideNav()} >X</span>
                 </div>
                 <div className="fullNavItemsListContainer" >
                     <div className="fullNavSearch" >
-                        <input type="text" placeholder="Search recipes" />
-                        <button className="searchBtn" >SEARCH</button>
+                        <input type="text" placeholder="Search recipes" onChange={(e) => this.props.updateSearchTerms(e.target.value)} />
+                        <Link to="/search_results" >
+                        <button className="searchBtn" onClick={this.handleSearchClick} >SEARCH</button>
+                        </Link>
                     </div>
                     <div className="fullNavItemsList" >
                         <div className="fullNavItem" >
-                            <Link to="/browse" onClick={this.handleItemClick} >
+                            <Link to="/browse"  >
                                 BROWSE
                             </Link>
                         </div>
                         {this.props.username &&
                         <div className="fullNavItem" >
-                            <Link to={`/dashboard`} onClick={this.handleItemClick} >
+                            <Link to={`/dashboard`} >
                                 {this.props.username}
                             </Link>
                         </div>}
-                        <div className="fullNavItem" onClick={this.handleItemClick} >
+                        <div className="fullNavItem" >
                             <Link to="/new_recipe" >
                                 Add New Recipe
                             </Link>
                         </div>
                         
                         {!this.props.username &&
-                        <div className="fullNavItem" onClick={this.handleItemClick} >
-                            <Link to="/" onClick={this.handleLogin} >
+                        <div className="fullNavItem" onClick={this.handleLogin} >
+                            
                                 LOGIN
-                            </Link>
+                            
                         </div>}
                         {this.props.username &&
-                        <div className="fullNavItem" onClick={this.handleItemClick} >
-                            <Link to="/" onClick={this.handleLogout} >
+                        <div className="fullNavItem" onClick={this.handleLogout} >
+                            
                                 LOGOUT
-                            </Link>
+                            
                         </div>}
                     </div>
                     

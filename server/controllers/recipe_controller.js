@@ -124,6 +124,13 @@ module.exports = {
         
         dbInstance.delete_recipe([req.params.recipe_id]).then(res.status(200).send())
         .catch(() => res.status(500).send());
+    },
+    searchRecs: function (req, res, next) {
+        const dbInstance = req.app.get('db')
+
+        dbInstance.search_recipes([req.params.search_terms])
+        .then((recipes) => res.status(200).send(recipes))
+        .catch(() => res.status(500).send())
     }
 }
 

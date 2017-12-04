@@ -1,0 +1,32 @@
+.homeHeader {
+    clear: both;
+}
+.homeDisplay {
+    width: auto;
+    display: block;
+    /* flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;  */
+}
+.homePageButton {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(93,115,126,1);
+    color: #F06543;
+    border: 2px solid #F06543;
+    border-radius: 1px;
+    height: 70px;
+    margin: 10px auto;
+    
+}
+.homePageButton:hover {
+    color: rgba(93,115,126,1);;
+    background: #F06543;
+    border-color: rgba(93,115,126,1);
+}

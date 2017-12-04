@@ -23,20 +23,20 @@ class HomePage extends Component {
 
     render() {
         return (
-            <div>
-                <h1>
-                    Home Page
-                </h1>
-
-                
-                    <Link to="/browse" >
-                        <Button>
-                            See more!
-                        </Button>
-                    </Link>
+            <div className="homeDisplay" >
+               
                 <ReactTransitionGroup component="div" >
                     <BartendTheWorld />
                 </ReactTransitionGroup>
+                <div className="homeHeader" > 
+
+                
+                    <Link to="/browse" >
+                        <button className="homePageButton" >
+                            See more!
+                        </button>
+                    </Link>
+                </div>
 
             </div>
         )

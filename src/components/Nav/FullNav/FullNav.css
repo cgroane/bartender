@@ -225,9 +225,6 @@
 .fullNavSearch input:defaultValue{
     color: grey
 }
-.searchBtn {
-    
-}
 
 @media screen and (max-height: 450px) {
     .FullNavOverlay a {font-size: 20px;}
