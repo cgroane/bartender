@@ -208,6 +208,61 @@ const stepAddTrigger = (
     <h2>Add Steps</h2>
 </div>
 )
+if (this.state.recSaved)
+    {var ingredientFormCollapsible = (
+        <Collapsible trigger={ingredientAddTrigger} >  
+        <div className="ingredientsContainer" >
+            {ingredientsAddDisply}
+        </div>
+            <div className="formButtonContainer" >
+                <button className="col-4" onClick={this.handleIngredientAdd} >ADD</button>
+                <button className="col-4" onClick={this.handleIngredientsSave} >Save Ingredients List</button>
+            </div>
+            {/* loop through the ingredientsAddDisplay */}
+        </Collapsible>
+    )} else {
+        var ingredientFormCollapsible = (
+            <Collapsible trigger={ingredientAddTrigger} triggerDisabled={true} >  
+            <div className="ingredientsContainer" >
+                {ingredientsAddDisply}
+            </div>
+                <div className="formButtonContainer" >
+                    <button className="col-4" onClick={this.handleIngredientAdd} >ADD</button>
+                    <button className="col-4" onClick={this.handleIngredientsSave} >Save Ingredients List</button>
+                </div>
+                {/* loop through the ingredientsAddDisplay */}
+            </Collapsible>
+        )
+    }
+    if (this.state.recSaved) {
+        var stepsFormCollapsible = (
+            <Collapsible trigger={stepAddTrigger} > 
+            <div className="stepsContainer" >
+                {stepsAddDisplay}
+            </div>
+            
+            <div  className="formButtonContainer" >
+                <button onClick={this.handleStepAdd} >ADD</button>
+                <button onClick={this.handleStepsSave} >Save Steps List</button>
+            </div>
+            {/* loop through steps add display, access the value  */}
+        </Collapsible>
+        )
+    } else {
+        var stepsFormCollapsible = (
+            <Collapsible trigger={stepAddTrigger} triggerDisabled={true} > 
+            <div className="stepsContainer" >
+                {stepsAddDisplay}
+            </div>
+            
+            <div  className="formButtonContainer" >
+                <button onClick={this.handleStepAdd} >ADD</button>
+                <button onClick={this.handleStepsSave} >Save Steps List</button>
+            </div>
+            {/* loop through steps add display, access the value  */}
+        </Collapsible>
+        )
+    }
 
         return (
             
@@ -251,28 +306,10 @@ const stepAddTrigger = (
         </form>
         </Collapsible>
         
-        <Collapsible trigger={ingredientAddTrigger} >  
-        <div className="ingredientsContainer" >
-            {ingredientsAddDisply}
-        </div>
-            <div className="formButtonContainer" >
-                <button className="col-4" onClick={this.handleIngredientAdd} >ADD</button>
-                <button className="col-4" onClick={this.handleIngredientsSave} >Save Ingredients List</button>
-            </div>
-            {/* loop through the ingredientsAddDisplay */}
-        </Collapsible>
         
-        <Collapsible trigger={stepAddTrigger} > 
-                <div className="stepsContainer" >
-                    {stepsAddDisplay}
-                </div>
-                
-                <div  className="formButtonContainer" >
-                    <button onClick={this.handleStepAdd} >ADD</button>
-                    <button onClick={this.handleStepsSave} >Save Steps List</button>
-                </div>
-                {/* loop through steps add display, access the value  */}
-            </Collapsible>
+        {ingredientFormCollapsible}
+        {stepsFormCollapsible}
+        
                 <div className="cancelContainer" > 
                     <button onClick={this.handleCancel} >Cancel</button>
                 </div>
@@ -285,10 +322,3 @@ const stepAddTrigger = (
 const mapStateToProps = state => state;
 
 export default connect(mapStateToProps, {requestUser, getFavorites,updateRecipeDescription, updateRecipeServes, updateRecipeTitle, updateRecipeImage}) (AddRecipe);
-
-// each ingredient text area is created with an index as the key
-// create array on state -- every time a input area is created (quantity, unit, title) assign it as an object with properties - quantity, unit, title
-// concatenate this onto state
-// onchange event for each property
-// the onchange has to know which is being changed and which object and property in the array needs to be updated
-// onchange parameters (index, property)

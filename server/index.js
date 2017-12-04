@@ -16,7 +16,7 @@ const port = 3001;
 // const connectionString = `postgres://${dbUser}@localhost/${database}`;
 
 const app = express();
-
+// app.use(express.static(`${__dirname}/../build`));
 app.use(
   session({
     secret,
