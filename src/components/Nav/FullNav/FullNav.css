@@ -110,13 +110,14 @@
     width: 100%;
     position: fixed;
     z-index: 1050;
-    left: 0;
+    right: 0;
     top: 0;
     background-color: #5D737E;
     background-color: rgba(93,115,126,0.9);
     overflow-x: hidden;
     transition: 1s;
     color: white;
+    
 }
 
 .FullNavOverlay a {

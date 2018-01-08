@@ -110,7 +110,7 @@ app.get("/api/test", (req, res, next) => {
     .catch(console.log);
 });
 
-// app.get("/api/logout", passport.authenticate('autho0', {successRedirect: "http://localhost:3000/"}))
+app.get("/api/logout", passport.authenticate('autho0', {successRedirect: "http://localhost:3000/"}))
 
 
 //recipes

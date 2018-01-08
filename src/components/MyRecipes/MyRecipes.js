@@ -24,19 +24,20 @@ class MyRecipes extends Component {
         // console.log(this.props)
         // if statement to check recipe.user_id against this.props.user_id --> show edit/delete buttons on recipes if so.
         if (this.props.myRecipes.length > 0) {
-        var myRecipesDisplay = this.props.myRecipes.map((cur, ind) => (
-            <Carousel.Item key={ind}>
-                        <img width={900} height={500} alt="900x500" src={cur.image_url}/>
+            var myRecipesDisplay = this.props.myRecipes.map((cur, ind) => (
+                <Carousel.Item key={ind}>
+                    <img  alt="900x500" src={cur.image_url}/>
                     <Link to={`/${cur.recipe_id}/recipe_details`} key={ind} >
-                        <Carousel.Caption>
-                            <h3>{cur.recipe_title}</h3>
-                            <p>{cur.recipe_description}</p>
-                        </Carousel.Caption>
+                    <Carousel.Caption>
+                        <h3>{cur.recipe_title}</h3>
+                        <p>{cur.recipe_description}</p>
+                    </Carousel.Caption>
                     </Link>
                     {/* add edit button -- redirect or popup edit modal, get recipe_id, ingredients, steps for recipe */}
-                    </Carousel.Item>
-            )
-        )   
+                </Carousel.Item>
+            ) 
+        ) 
+        var carouselDisplay = <Carousel>{myRecipesDisplay}</Carousel>  
     } else {
             var myRecipesDisplay = (
                 <div  className="nullRecipesDisplay" >
@@ -50,19 +51,11 @@ class MyRecipes extends Component {
                 
             )
         }
-        if (this.props.myRecipes.length > 0) {
-            var carouselDisplay = (
-                <Carousel>{myRecipesDisplay}</Carousel>
-            )
-        } else {
-            var carouselDisplay = (
-                {myRecipesDisplay}
-            )
-        }
+       
 
         return (
             <div className="dashContentChildContainer" >
-                {myRecipesDisplay}
+                {carouselDisplay}
             </div>
         )
     }

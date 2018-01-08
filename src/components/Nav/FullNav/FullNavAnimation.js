@@ -9,6 +9,8 @@ export default {
         .from(target, duration, {
             opacity: 0,
             height: 0,
+            width: 0,          
+            borderBottomLeftRadius: 20000,
             onComplete() {
                 cb(console.log('cb'));
             },
