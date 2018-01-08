@@ -37,7 +37,7 @@ class MyRecipes extends Component {
                 </Carousel.Item>
             ) 
         ) 
-        var carouselDisplay = <Carousel>{myRecipesDisplay}</Carousel>  
+        // var carouselDisplay = <Carousel>{myRecipesDisplay}</Carousel>  
     } else {
             var myRecipesDisplay = (
                 <div  className="nullRecipesDisplay" >
@@ -55,7 +55,7 @@ class MyRecipes extends Component {
 
         return (
             <div className="dashContentChildContainer" >
-                {carouselDisplay}
+                <Carousel>{myRecipesDisplay}</Carousel>
             </div>
         )
     }

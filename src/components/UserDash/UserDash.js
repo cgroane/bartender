@@ -71,10 +71,10 @@ class LandingPage extends Component {
                                 <div className="pageHeaderContainer" ><PageHeader>Your Creations:</PageHeader></div>
                                 <div className="dashContentChild"><MyRecipes/></div>
                             </div>
-                            <div className="page" >
+                            {/* <div className="page" >
                                 <div className="pageHeaderContainer" ><PageHeader>You might like:</PageHeader></div>
                                 <div className="dashContentChild"><Recommended/></div>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="editProfile page" >
                             <Link to="/new_recipe" >
