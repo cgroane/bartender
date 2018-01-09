@@ -110,7 +110,7 @@ app.get("/api/test", (req, res, next) => {
     .catch(console.log);
 });
 
-app.get("/api/logout", passport.authenticate('autho0', {successRedirect: "http://localhost:3000/"}))
+app.get("/api/logout", passport.authenticate('autho0', {successRedirect: "http://18.217.182.247/"}))
 const recipeCtrl = require('./controllers/recipe_controller');
 const favoriteCtrl = require('./controllers/favorites_controller');
 const userCtrl = require('./controllers/user_controller');
