@@ -13,7 +13,7 @@ export default class Login extends Component {
     }
 
     handleLogin() {
-        window.location.href = 'http://bartendtheworld.com/api/login';
+        window.location.href = 'http://www.bartendtheworld.com/api/login';
     }
 
     render() {
