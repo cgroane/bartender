@@ -7,31 +7,31 @@ const session = require("express-session");
 const massive = require("massive");
 const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
-
-const { dbUser, database, connectionString } = require("../config").massive;
-const { secret } = require("../config").session;
-const { domain, clientID, clientSecret } = require("../config.js").passportAuth0;
-
+require('dotenv').config();
+// const { dbUser, database, connectionString } = require("../config").massive;
+// const { secret } = require("../config").session;
+// const { domain, clientID, clientSecret } = require("../config.js").passportAuth0;
+// const domain = process.env.PASSPORT_DOMAIN;
+// const clientID = process.env.PASSPORT_CLIENT_ID;
+// const clientSecret = process.env.PASSPORT_CLIENT_SECRET;
+// const secret = process.env.SESSION_SECRET;
 const port = 3001;
 // const connectionString = `postgres://${dbUser}@localhost/${database}`;
-
+// console.log(process.env.CONNECTION_STRING);
 const app = express();
 app.use(express.static(`${__dirname}/../build`));
 app.use(
   session({
-    secret,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
   })
 );
 
-massive(connectionString)
+massive(process.env.CONNECTION_STRING)
   .then(db => app.set("db", db))
   .catch(console.log);
 
-const recipeCtrl = require('./controllers/recipe_controller');
-const favoriteCtrl = require('./controllers/favorites_controller');
-const userCtrl = require('./controllers/user_controller');
 
 app.use(json());
 app.use(cors());
@@ -42,9 +42,9 @@ app.use(passport.session());
 passport.use(
   new Auth0Strategy(
     {
-      domain,
-      clientID,
-      clientSecret,
+      domain: process.env.PASSPORT_DOMAIN,
+      clientID: process.env.PASSPORT_CLIENT_ID,
+      clientSecret: process.env.PASSPORT_CLIENT_SECRET,
       callbackURL: "/api/login"
     },
     function(accessToken, refreshToken, extraParams, profile, done) {
@@ -111,6 +111,9 @@ app.get("/api/test", (req, res, next) => {
 });
 
 app.get("/api/logout", passport.authenticate('autho0', {successRedirect: "http://localhost:3000/"}))
+const recipeCtrl = require('./controllers/recipe_controller');
+const favoriteCtrl = require('./controllers/favorites_controller');
+const userCtrl = require('./controllers/user_controller');
 
 
 //recipes
