@@ -103,7 +103,7 @@ app.get("/api/test", (req, res, next) => {
     .catch(console.log);
 });
 
-app.get("/api/logout", passport.authenticate('autho0', {successRedirect: "http://www.bartendtheworld.com/"}))
+app.get("/api/logout", passport.authenticate('autho0', {successRedirect: "http://www.bartendtheworld.com"}))
 const recipeCtrl = require('./controllers/recipe_controller');
 const favoriteCtrl = require('./controllers/favorites_controller');
 const userCtrl = require('./controllers/user_controller');
