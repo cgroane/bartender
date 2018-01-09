@@ -65,7 +65,7 @@ class AddRecipe extends Component {
     }
     
     handleRecipeSave(e) {
-        console.log(this.props)
+        
         e.preventDefault();
         
         const {recipeAddTitle, recipeAddDescription, recipeAddImage, recipeAddServes} = this.props;
@@ -107,7 +107,7 @@ class AddRecipe extends Component {
         // ingredient.property = value
         var tempArr = this.state.inputIngredientsArray.slice()
         tempArr[index][property] = value;
-        this.setState({inputIngredientsArray: tempArr}, console.log(this.state.inputIngredientsArray));
+        this.setState({inputIngredientsArray: tempArr});
 
     }
     handleStepsChange(value, index, property) {

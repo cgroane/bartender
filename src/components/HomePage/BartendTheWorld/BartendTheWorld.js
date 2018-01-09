@@ -8,15 +8,15 @@ class BartendTheWorld extends Component {
         super(props);
     }
     componentDidMount(){
-        console.log('component did mount')
+        
     }
 
     componentDidEnter(cb) {
-        console.log("mounted")
+        
         HomePageAnimation.show(this.homeText, cb)
     }
     componentWillAppear(cb) {
-        console.log('component appeared')
+        
         HomePageAnimation.show(this.homeText, cb)
     }
 

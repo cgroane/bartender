@@ -19,7 +19,7 @@ class UserEditModal extends Component {
         this.props.loadEditData(this.props.user);
         
         
-        // console.log(this.props.recipeSteps)
+        
     }
     handleSave() {
         this.props.handleUserEditSave(this.props.user.user_id, this.props.editUser);

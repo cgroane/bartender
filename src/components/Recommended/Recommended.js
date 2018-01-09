@@ -22,7 +22,7 @@ class Recommended extends Component {
     }
     
     render() {
-        // console.log(this.props)
+        
     //    if (this.props.recommended.length > 0) { 
            
     //     var RecommendedDisplay = this.props.recommended.map((cur, ind) => (

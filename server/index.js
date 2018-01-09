@@ -8,16 +8,9 @@ const massive = require("massive");
 const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 require('dotenv').config();
-// const { dbUser, database, connectionString } = require("../config").massive;
-// const { secret } = require("../config").session;
-// const { domain, clientID, clientSecret } = require("../config.js").passportAuth0;
-// const domain = process.env.PASSPORT_DOMAIN;
-// const clientID = process.env.PASSPORT_CLIENT_ID;
-// const clientSecret = process.env.PASSPORT_CLIENT_SECRET;
-// const secret = process.env.SESSION_SECRET;
+
 const port = 3001;
-// const connectionString = `postgres://${dbUser}@localhost/${database}`;
-// console.log(process.env.CONNECTION_STRING);
+
 const app = express();
 app.use(express.static(`${__dirname}/../build`));
 app.use(
@@ -79,7 +72,7 @@ passport.deserializeUser(function(obj, done) {
 
 app.get(
   "/api/login", function(req, res, next) {
-    console.log("redirected")
+    
     next()
   },
   passport.authenticate("auth0", { successRedirect: "/dashboard" })

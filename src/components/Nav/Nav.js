@@ -46,7 +46,7 @@ class Nav extends Component {
 
     componentDidMount() {
       this.props.requestUser();
-      console.log(this.props)
+      
     }
 
     render() {

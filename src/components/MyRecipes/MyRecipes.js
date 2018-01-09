@@ -12,17 +12,16 @@ class MyRecipes extends Component {
     constructor(props) {
         super(props);
 
-        // this.handleClick = this.handleClick.bind(this);
+        
     }
 
     componentWillMount() {
-        // this.props.getFavorites(this.props.user.user_id)
+        
         this.props.requestUser()
     }
     
     render() {
-        // console.log(this.props)
-        // if statement to check recipe.user_id against this.props.user_id --> show edit/delete buttons on recipes if so.
+        
         if (this.props.myRecipes.length > 0) {
             var myRecipesDisplay = this.props.myRecipes.map((cur, ind) => (
                 <Carousel.Item key={ind}>

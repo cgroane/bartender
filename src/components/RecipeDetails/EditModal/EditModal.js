@@ -21,16 +21,16 @@ class EditModal extends Component {
         this.props.requestUser();
         this.props.getIngredients(this.props.rec_id);
         this.props.getSteps(this.props.rec_id);
-        console.log(this.props.recipeSteps)
+        
         
         // this.props.
     }
     handleButtonClick() {
-        console.log(this.props);
+        
     }
     close() {
         this.props.hideEditRecipeModal();
-        console.log(this.props)
+        
     }
 
     render(){

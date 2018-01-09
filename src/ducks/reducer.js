@@ -44,7 +44,7 @@ const GET_SEARCH_RESULTS = "GET_SEARCH_RESULTS";
 // function getUserData() {
 //     axios.get(`/api/me`).then(response => {
 //         userInfo.user = response.data;
-//         console.log(response.data)
+//         
 //         return axios.get(`/api/favorites/${userInfo.user.user_id}`).then(response => {
 //             userInfo.favorites = response.data;
 //             return userInfo
@@ -173,7 +173,7 @@ export function requestUser() {
     return {
         type: REQ_USER,
         payload: axios.get(`/api/me`).then(response => {
-        //    console.log(response.data)
+        
             return getFavorites(response.data.user_id) && getMyRecipes(response.data.user_id) && getUserTastes(response.data.user_id) && getAllRecipes() && response.data;
         })
     }
@@ -184,12 +184,11 @@ export function getRecommended(title) {
         type: GET_RECOMMENDED,
         payload: axios.get(`/api/recipes/${title}/recommended`).then(response => {
             if(response.data.length !== 0){
-                // console.log("not a zero length recommended")
-            console.log(response.data[0])
+                
             return response.data[0].recipe_title
                     
             }
-            // console.log("zero length recommended response")
+            
             return response
         })
     }
@@ -204,7 +203,7 @@ export function getMyRecipes(user_id) {
 }
 
 export function getFavorites(user_id) {
-    // console.log(user_id)
+    
     return {
         type: GET_FAVORITES,
         payload: axios.get(`/api/favorites/${user_id}`).then(response => response.data)

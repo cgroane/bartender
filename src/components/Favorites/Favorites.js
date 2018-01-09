@@ -12,17 +12,16 @@ class Favorites extends Component {
     constructor(props) {
         super(props);
 
-        // this.handleClick = this.handleClick.bind(this);
+        
     }
 
     componentWillMount() {
-        // this.props.getFavorites(this.props.user.user_id)
+        
         this.props.requestUser()
     }
     
     render() {
-        // console.log(this.props)
-        // if statement to check recipe.user_id against this.props.user_id --> show edit/delete buttons on recipes if so.
+        
         
        if (this.props.favorites.length > 0) { 
            
@@ -35,7 +34,7 @@ class Favorites extends Component {
                             <p>{cur.recipe_description}</p>
                         </Carousel.Caption>
                     </Link>
-                    {/* add edit button -- redirect or popup edit modal, get recipe_id, ingredients, steps for recipe */}
+                   
                     </Carousel.Item>
         ))
     } else {

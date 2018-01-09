@@ -15,12 +15,12 @@ class RecipeDetails extends Component {
         super(props);
         this.state = {
             newComment: '',
-            // showModal: false
+            
         }
 
         this.handleAddToFavorites = this.handleAddToFavorites.bind(this);
         this.handleComment = this.handleComment.bind(this);
-        // this.handleEdit = this.handleEdit.bind(this);
+        
     }
     componentDidMount() {
     this.props.requestUser();
@@ -28,19 +28,11 @@ class RecipeDetails extends Component {
     this.props.getIngredients(this.props.match.params.recipe_id);
     this.props.getComments(this.props.match.params.recipe_id);
 
-    // this.setState({showModal: false});
+    
     }
     
     
-    // handleEditOpen() {
-    //     this.setState({showModal:true})
-    // }
-    // handleEditClose() {
-    //     this.setState({showModal:false})
-    // }
-    // handleEditSave() {
-    //     this.setState({showModal:false})
-    // }
+  
         
 
     handleAddToFavorites() {
@@ -57,7 +49,7 @@ class RecipeDetails extends Component {
             user_id: this.props.user.user_id,
             content: this.state.newComment
         }
-        console.log(this.state.newComment)
+        
        if (commentToAdd.content.length == 0) alert('Comment is empty. Cannot add empty comment.');
         axios.post(`/api/comments/${this.props.match.params.recipe_id}`, commentToAdd).then(response => response.data).then(() => this.props.getComments(this.props.match.params.recipe_id));
     }
@@ -65,14 +57,11 @@ class RecipeDetails extends Component {
         this.setState({newComment: comment});
     }
 
-    // handleEdit() {
-    //     console.log(this.props);
-    //     this.props.showEditRecipeModal();
-    // }
+    
 
     
     render() {
-        // console.log(this.props);
+        
         
         if (this.props.showRecipeModal === true) {
             var viewModal = <EditModal rec_id={this.props.match.params.recipe_id}/>

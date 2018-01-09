@@ -16,7 +16,7 @@ export default {
             width: 0,
             
             onComplete() {
-                // cb(console.log('cb'));
+                
             },
           
             
@@ -25,7 +25,7 @@ export default {
         //     left: 50,
         //     top: 180,
         //     onComplete() {
-        //         // cb(console.log('cb'))
+        
         //     }
         // }) 
     },
@@ -35,7 +35,7 @@ export default {
             opactiy: 0,
             height: 0,
             onComplete() {
-                // cb(console.log('cb'));
+                
             },
             
         })

@@ -29,8 +29,7 @@ updateUser: function (req, res, next) {
     dbInstance.update_user([req.body.username, req.body.image_url, req.params.user_id])
     .then((user) => {
         req.user = user[0]
-        // console.log("update user function", req.user)
-        console.log(req.user)
+       
         res.status(200).send(user[0])
     })
     .catch(() => res.status(500).send())

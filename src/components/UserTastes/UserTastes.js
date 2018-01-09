@@ -13,16 +13,16 @@ class UserTastes extends Component {
     constructor(props) {
         super(props);
 
-        // this.handleClick = this.handleClick.bind(this);
+        
     }
 
     componentWillMount() {
-        // this.props.getFavorites(this.props.user.user_id)
+        
         this.props.requestUser()
     }
     
     render() {
-        // console.log(this.props)
+        
        if (this.props.userTastes.length > 0) { 
            
         var tastesDisplay = this.props.userTastes.map((cur, ind) => (

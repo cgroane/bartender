@@ -12,14 +12,14 @@ class BrowseTile extends Component {
         super(props)
     }
     componentWillAppear(cb) {
-        console.log('cb')
+        
         BrowseAnimation.show(this.browseCards, cb)
     }
     componentDidAppear() {
-        console.log('cb')
+        
     }
     componentDidEnter(){
-        console.log('cb')
+        
     }
 
 
@@ -28,10 +28,6 @@ class BrowseTile extends Component {
 
     }
     render() {
-
-        // console.log(this.props)
-        // if statement to check recipe.user_id against this.props.user_id --> show edit/delete buttons on recipes if so.
-        
 
         return(
             <div className="browseCard" ref={ref => this.browseCards = ref} >

@@ -20,7 +20,7 @@ class Browse extends Component {
         this.props.requestUser();
     }
     render() {
-        // console.log(this.props);
+        
         
         const browseTileList = this.props.allRecipes.map((cur, ind) => {
             return (

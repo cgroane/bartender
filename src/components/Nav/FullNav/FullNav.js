@@ -21,12 +21,12 @@ class FullNav extends Component {
     }
     
     componentDidMount() {
-        console.log(this)
+        
         this.props.requestUser();
        
     }
     componentWillEnter(cb) {
-        console.log("com[onent entered")
+        
         FullNavAnimation.show(this.appNav, cb);
     }
     componentWillLeave(cb) {

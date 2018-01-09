@@ -8,7 +8,7 @@ import Nav from './../Nav/Nav';
 class App extends Component {
 
   componentDidMount() {
-    // axios.get('/api/test').then(response => console.log(response));
+    
   }
 
   render() {

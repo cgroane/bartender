@@ -29,21 +29,20 @@ class LandingPage extends Component {
                 })
             )
         })
-        // console.log(id)
-        // console.log(this.props.user)
+        
     }
     
         render() {
-            // console.log(this.props);
+         
             if(this.props.showUserEditModal) {
-                var userModal = <UserEditModal onScroll={() => console.log('scrolling')} />
+                var userModal = <UserEditModal  />
             }  
             else {
                 var userModal = null;
             }
             
             return (
-                <div className="userDashContainer"  onScroll={() => console.log('scrolling')} >
+                <div className="userDashContainer"   >
                     <div className="userInfoAndHeader" >
                         <div className="userDashInfoContainer" >
                         <div className="profileUsername">
