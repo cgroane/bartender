@@ -33,10 +33,10 @@ class FullNav extends Component {
         FullNavAnimation.hide(this.appNav, cb)
     }
     handleLogin() {
-        window.location.href = 'http://localhost:3001/api/login';
+        window.location.href = '/api/login';
     }
     handleLogout() {
-        window.location.href = "http://localhost:3001/logout"
+        window.location.href = "/logout"
         
     }
     handleItemClick(event) {

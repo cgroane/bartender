@@ -33,7 +33,7 @@ class Nav extends Component {
     }
     
     handleLogin() {
-        window.location.href = 'http://localhost:3001/api/login';
+        window.location.href = 'http://bartendtheworld.com/api/login';
     }
 
     handleLogout() {
