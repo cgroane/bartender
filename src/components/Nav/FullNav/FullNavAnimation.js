@@ -12,7 +12,7 @@ export default {
             width: 0,          
             borderBottomLeftRadius: 20000,
             onComplete() {
-                
+                cb()
             },
             
         })
@@ -23,7 +23,7 @@ export default {
             opactiy: 0,
             height: 0,
             onComplete() {
-                
+                cb()
             },
             
         })

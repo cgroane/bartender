@@ -63,12 +63,12 @@ export function showNav() {
         payload: true
     }
 }
-export function hideNav() {
-    return {
-        type: HIDE_NAV_OVERLAY,
-        payload: false
-    }
-}
+// export function hideNav() {
+//     return {
+//         type: HIDE_NAV_OVERLAY,
+//         payload: false
+//     }
+// }
 export function loadEditData(userObj) {
     return {
         type: LOAD_EDIT_DATA,
