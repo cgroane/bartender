@@ -40,6 +40,6 @@
   },
   "now": {
     "alias": "bartend-the-world"
-  },
-  "proxy": "http://localhost:3001"
+  }
+  
 }
