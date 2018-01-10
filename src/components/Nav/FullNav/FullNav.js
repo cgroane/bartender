@@ -33,7 +33,7 @@ class FullNav extends Component {
         FullNavAnimation.hide(this.appNav, cb)
     }
     handleLogin() {
-        window.location.href = 'http://www.bartendtheworld.com/api/login';
+        window.location.href = '/api/login';
     }
     handleLogout() {
         window.location.href = "/logout"

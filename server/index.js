@@ -75,11 +75,11 @@ app.get(
     
     next()
   },
-  passport.authenticate("auth0", { successRedirect: "/" })
+  passport.authenticate("auth0", { successRedirect: "http://www.bartendtheworld.com/" })
 );
 app.get('/logout', function(req, res) {
   req.logout();
-  res.redirect('/');
+  res.redirect('http://www.bartendtheworld.com/');
 })
 
 
